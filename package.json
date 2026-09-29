@@ -1,0 +1,12 @@
+{
+  "name": "proofgate",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Self-hosted acceptance gate: prove which requirements passed, on which exact revisions, with fresh verifiable evidence.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22.12" },
+  "scripts": {
+    "verify": "bash scripts/verify-quality.sh"
+  }
+}
