@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "string",
+      "const": "proofgate.receipt"
+    },
+    "schema_version": {
+      "type": "number",
+      "const": 1
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "requirement_ids": {
+      "minItems": 1,
+      "maxItems": 200,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+      }
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$"
+    },
+    "commit_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "runner_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "environment": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "test_level": {
+      "type": "string",
+      "enum": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "execution_kind": {
+      "type": "string",
+      "enum": [
+        "live",
+        "mocked",
+        "synthetic"
+      ]
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail",
+        "partial",
+        "skipped"
+      ]
+    },
+    "tests": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "passed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "skipped": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        }
+      },
+      "required": [
+        "total",
+        "passed",
+        "failed",
+        "skipped"
+      ],
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "finished_at": {
+      "type": "string",
+      "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})(?:\\.(\\d{1,3}))?Z$"
+    },
+    "command": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "maxLength": 100
+      },
+      "additionalProperties": {}
+    }
+  },
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "requirement_ids",
+    "repository",
+    "commit_sha",
+    "runner_id",
+    "environment",
+    "test_level",
+    "execution_kind",
+    "result",
+    "tests",
+    "artifact",
+    "finished_at"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:proofgate:schema:receipt:1",
+  "title": "Test receipt, native format"
+}

@@ -1,0 +1,639 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "number",
+      "const": 1
+    },
+    "assessment_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "manifest_name": {
+      "type": "string"
+    },
+    "manifest_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "revisions_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "receipts_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "evaluated_at": {
+      "type": "string",
+      "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})(?:\\.(\\d{1,3}))?Z$"
+    },
+    "clock_source": {
+      "type": "string",
+      "enum": [
+        "flag",
+        "env",
+        "system"
+      ]
+    },
+    "engine": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "proofgate"
+        },
+        "version": {
+          "type": "string"
+        },
+        "policy_version": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "policy_version"
+      ],
+      "additionalProperties": false
+    },
+    "revisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "repository": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$"
+          },
+          "commit_sha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          }
+        },
+        "required": [
+          "repository",
+          "commit_sha"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "unsatisfied"
+      ]
+    },
+    "exit_code": {
+      "anyOf": [
+        {
+          "type": "number",
+          "const": 0
+        },
+        {
+          "type": "number",
+          "const": 1
+        }
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_requirements": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "mandatory_requirements": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "mandatory_passed": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "mandatory_unsatisfied": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "by_status": {
+          "type": "object",
+          "properties": {
+            "PASS": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "FAIL": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "STALE": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "MISSING": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "PARTIAL": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "DEFERRED": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "PASS",
+            "FAIL",
+            "STALE",
+            "MISSING",
+            "PARTIAL",
+            "DEFERRED"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "total_requirements",
+        "mandatory_requirements",
+        "mandatory_passed",
+        "mandatory_unsatisfied",
+        "by_status"
+      ],
+      "additionalProperties": false
+    },
+    "supersedes": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "assessment_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "manifest_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "policy_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "policy_changed": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "assessment_id",
+            "manifest_hash",
+            "policy_hash",
+            "policy_changed"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "input_summary": {
+      "type": "object",
+      "properties": {
+        "files_scanned": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "receipt_documents": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "metadata_bytes": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "artifact_bytes": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "files_scanned",
+        "receipt_documents",
+        "metadata_bytes",
+        "artifact_bytes"
+      ],
+      "additionalProperties": false
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "mandatory",
+              "advisory"
+            ]
+          },
+          "required_level": {
+            "type": "string",
+            "enum": [
+              "unit",
+              "integration",
+              "e2e"
+            ]
+          },
+          "required_environment": {
+            "type": "string"
+          },
+          "max_age_seconds": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "repositories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$"
+            }
+          },
+          "allowed_execution_kinds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mocked",
+                "synthetic"
+              ]
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "STALE",
+              "MISSING",
+              "PARTIAL",
+              "DEFERRED"
+            ]
+          },
+          "evidence_status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "STALE",
+              "MISSING",
+              "PARTIAL",
+              "DEFERRED"
+            ]
+          },
+          "deferred_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "receipt_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+            }
+          },
+          "environments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "per_repository": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "repository": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$"
+                },
+                "expected_commit_sha": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "STALE",
+                    "MISSING",
+                    "PARTIAL",
+                    "DEFERRED"
+                  ]
+                },
+                "reason_codes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                },
+                "receipt_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+                  }
+                }
+              },
+              "required": [
+                "repository",
+                "expected_commit_sha",
+                "status",
+                "reason_codes",
+                "receipt_ids"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "rejected_receipts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "receipt_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+                },
+                "repository": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$"
+                },
+                "reason_codes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                }
+              },
+              "required": [
+                "receipt_id",
+                "repository",
+                "reason_codes"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "severity",
+          "required_level",
+          "required_environment",
+          "max_age_seconds",
+          "repositories",
+          "allowed_execution_kinds",
+          "status",
+          "evidence_status",
+          "deferred_reason",
+          "reason_codes",
+          "receipt_ids",
+          "environments",
+          "per_repository",
+          "rejected_receipts"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "receipts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "receipt_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+          },
+          "requirement_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+            }
+          },
+          "repository": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$"
+          },
+          "commit_sha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "runner_id": {
+            "type": "string"
+          },
+          "environment": {
+            "type": "string"
+          },
+          "test_level": {
+            "type": "string",
+            "enum": [
+              "unit",
+              "integration",
+              "e2e"
+            ]
+          },
+          "execution_kind": {
+            "type": "string",
+            "enum": [
+              "live",
+              "mocked",
+              "synthetic"
+            ]
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "partial",
+              "skipped"
+            ]
+          },
+          "tests": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "passed": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "failed": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "skipped": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "total",
+              "passed",
+              "failed",
+              "skipped"
+            ],
+            "additionalProperties": false
+          },
+          "artifact_path": {
+            "type": "string"
+          },
+          "artifact_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "finished_at": {
+            "type": "string",
+            "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})(?:\\.(\\d{1,3}))?Z$"
+          },
+          "command": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "adapter": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "provenance": {
+                "type": "string",
+                "enum": [
+                  "native",
+                  "fixture",
+                  "operator_capture"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "version",
+              "provenance"
+            ],
+            "additionalProperties": false
+          },
+          "source_file": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "receipt_id",
+          "requirement_ids",
+          "repository",
+          "commit_sha",
+          "runner_id",
+          "environment",
+          "test_level",
+          "execution_kind",
+          "result",
+          "tests",
+          "artifact_path",
+          "artifact_sha256",
+          "finished_at",
+          "command",
+          "content_sha256",
+          "adapter",
+          "source_file"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "manifest_name",
+    "manifest_hash",
+    "policy_hash",
+    "revisions_hash",
+    "receipts_hash",
+    "evaluated_at",
+    "clock_source",
+    "engine",
+    "revisions",
+    "verdict",
+    "exit_code",
+    "summary",
+    "supersedes",
+    "input_summary",
+    "requirements",
+    "receipts"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:proofgate:schema:report:1",
+  "title": "Acceptance report"
+}

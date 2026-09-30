@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "receipt_id": "rcpt-perf-smoke-001",
+  "requirement_ids": [
+    "REQ-PERF-SMOKE"
+  ],
+  "repository": "api",
+  "commit_sha": "d1ec81eb5402a6330282a1353a55c23f75679e14",
+  "runner_id": "synthetic-runner-1",
+  "environment": "ci",
+  "test_level": "unit",
+  "execution_kind": "live",
+  "result": "pass",
+  "tests": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "path": "artifacts/rcpt-perf-smoke-001.xml",
+    "sha256": "b070761abd67b00080af10a3ad5a430c97e92e8f1eaf7978f479a2c8a66bcd88"
+  },
+  "finished_at": "2026-09-29T11:00:00Z",
+  "command": "synthetic test command (recorded as text, never executed)"
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "receipt_id": "rcpt-checkout-api-001",
+  "requirement_ids": [
+    "REQ-CHECKOUT-API"
+  ],
+  "repository": "api",
+  "commit_sha": "d1ec81eb5402a6330282a1353a55c23f75679e14",
+  "runner_id": "synthetic-runner-1",
+  "environment": "staging",
+  "test_level": "integration",
+  "execution_kind": "live",
+  "result": "pass",
+  "tests": {
+    "total": 42,
+    "passed": 42,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "path": "artifacts/rcpt-checkout-api-001.xml",
+    "sha256": "37c538e5ab24ef8911afa80242a4f3f9c3b9edcb8a625e9cb4dc02043992a9f6"
+  },
+  "finished_at": "2026-09-29T09:00:00Z",
+  "command": "synthetic test command (recorded as text, never executed)"
+}
