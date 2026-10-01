@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "receipt_id": "rcpt-web-unit-001",
+  "requirement_ids": [
+    "REQ-WEB-UNIT"
+  ],
+  "repository": "web",
+  "commit_sha": "0fc24560cd3d6512f0508518f313de44bf0135e4",
+  "runner_id": "synthetic-runner-1",
+  "environment": "ci",
+  "test_level": "unit",
+  "execution_kind": "live",
+  "result": "fail",
+  "tests": {
+    "total": 230,
+    "passed": 228,
+    "failed": 2,
+    "skipped": 0
+  },
+  "artifact": {
+    "path": "artifacts/rcpt-web-unit-001.xml",
+    "sha256": "3064b0af2520cfc39fed397b184cd320f1d6da63c95df43a95eb0510757079c3"
+  },
+  "finished_at": "2026-09-29T11:00:00Z",
+  "command": "synthetic test command (recorded as text, never executed)"
+}

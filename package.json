@@ -1,12 +1,76 @@
 {
   "name": "proofgate",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Self-hosted acceptance gate: prove which requirements passed, on which exact revisions, with fresh verifiable evidence.",
   "license": "MIT",
   "type": "module",
-  "engines": { "node": ">=22.12" },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "bin": {
+    "proofgate": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "docs/SCHEMAS.md",
+    "docs/INTERFACES.md",
+    "docs/ADAPTERS.md",
+    "docs/DATA-RETENTION.md",
+    "docs/REPORT.md",
+    "docs/OPERATIONS.md",
+    "docs/RUNBOOK-SMOKE.md",
+    "docs/HUMAN-DRILL.md",
+    "docs/RELEASE.md",
+    "docs/BENCHMARK.md",
+    "docs/DEPENDENCY-LICENSES.md",
+    "docs/qa",
+    "docs/prd/proofgate.md",
+    "fixtures",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "LICENSE"
+  ],
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "schemas": "npm run build && node scripts/generate-schemas.mjs",
+    "schemas:check": "npm run build && node scripts/generate-schemas.mjs --check",
+    "licenses": "node scripts/dependency-licenses.mjs",
+    "benchmark": "npm run build && node scripts/benchmark.mjs",
+    "mutation-controls": "npm run build && node scripts/mutation-controls.mjs",
+    "e2e-mutation-controls": "node scripts/e2e-mutation-controls.mjs",
+    "hygiene": "node scripts/hygiene-scan.mjs",
+    "demo-fixtures": "node scripts/generate-demo-fixtures.mjs",
+    "demo-fixtures:check": "node scripts/generate-demo-fixtures.mjs --check",
+    "pack:install": "node scripts/pack-install.mjs",
+    "test:e2e": "vitest run --config vitest.e2e.config.ts",
+    "test:browser": "playwright test",
+    "smoke:runbook": "node scripts/runbook-smoke.mjs",
     "verify": "bash scripts/verify-quality.sh"
+  },
+  "dependencies": {
+    "yaml": "2.9.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.3",
+    "@vitest/coverage-v8": "5.0.2",
+    "ajv": "8.20.0",
+    "typescript": "7.0.2",
+    "vitest": "5.0.2"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "receipt_id": "rcpt-payment-sandbox-001",
+  "requirement_ids": [
+    "REQ-PAYMENT-SANDBOX"
+  ],
+  "repository": "api",
+  "commit_sha": "d1ec81eb5402a6330282a1353a55c23f75679e14",
+  "runner_id": "synthetic-runner-1",
+  "environment": "staging",
+  "test_level": "integration",
+  "execution_kind": "live",
+  "result": "pass",
+  "tests": {
+    "total": 18,
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "path": "artifacts/rcpt-payment-sandbox-001.xml",
+    "sha256": "565e58b1b8d96099e8645488320f0e53b3f85260c257e0977c1e7eeb8b3da12b"
+  },
+  "finished_at": "2026-09-27T12:00:00Z",
+  "command": "synthetic test command (recorded as text, never executed)"
+}

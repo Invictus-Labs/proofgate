@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "name": "proofgate-synthetic-demo",
+  "synthetic": true,
+  "note": "Synthetic, account-free fixtures. Receipt ids are opaque; commit SHAs are derived from fixed labels; nothing here is customer data.",
+  "clock": "2026-09-29T12:00:00Z",
+  "command_pattern": "proofgate evaluate --manifest <dir>/requirements.yaml --receipts <dir>/receipts --revisions <dir>/revisions.json --output <report-dir> --now <clock>",
+  "scenarios": {
+    "happy": {
+      "description": "Every mandatory requirement has fresh, live, passing evidence for the exact revisions; one advisory requirement is DEFERRED and stays visible.",
+      "directory": "demo/happy",
+      "expect": {
+        "exit_code": 0,
+        "verdict": "accepted",
+        "statuses": {
+          "REQ-CHECKOUT-API": "PASS",
+          "REQ-CHECKOUT-E2E": "PASS",
+          "REQ-WEB-UNIT": "PASS",
+          "REQ-PAYMENT-SANDBOX": "PASS",
+          "REQ-DATA-MIGRATION": "PASS",
+          "REQ-PERF-SMOKE": "PASS",
+          "REQ-VENDOR-SANDBOX": "DEFERRED"
+        }
+      }
+    },
+    "unsatisfied": {
+      "description": "The same policy with planted problems: one requirement in every non-PASS status. Mandatory requirements are not satisfied, so the release is not accepted.",
+      "directory": "demo/unsatisfied",
+      "expect": {
+        "exit_code": 1,
+        "verdict": "unsatisfied",
+        "statuses": {
+          "REQ-CHECKOUT-API": "PASS",
+          "REQ-CHECKOUT-E2E": "PARTIAL",
+          "REQ-WEB-UNIT": "FAIL",
+          "REQ-PAYMENT-SANDBOX": "STALE",
+          "REQ-DATA-MIGRATION": "MISSING",
+          "REQ-PERF-SMOKE": "PARTIAL",
+          "REQ-VENDOR-SANDBOX": "DEFERRED"
+        }
+      }
+    },
+    "tampered": {
+      "description": "An artifact was edited after its receipt recorded the hash. This is rejected as malformed input: exit 2, artifact_hash_mismatch, and no report is written.",
+      "directory": "demo/tampered",
+      "expect": {
+        "exit_code": 2,
+        "error_code": "artifact_hash_mismatch"
+      }
+    },
+    "duplicate": {
+      "description": "A manifest that declares one requirement id twice. Rejected as malformed input: exit 2, manifest_duplicate_requirement_id, and no report is written.",
+      "directory": "demo/duplicate",
+      "expect": {
+        "exit_code": 2,
+        "error_code": "manifest_duplicate_requirement_id"
+      }
+    }
+  }
+}

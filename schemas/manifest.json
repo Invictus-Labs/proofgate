@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "number",
+      "const": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "repositories": {
+      "minItems": 1,
+      "maxItems": 50,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 300
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "requirements": {
+      "minItems": 1,
+      "maxItems": 5000,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "mandatory",
+              "advisory"
+            ]
+          },
+          "required_level": {
+            "type": "string",
+            "enum": [
+              "unit",
+              "integration",
+              "e2e"
+            ]
+          },
+          "required_environment": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "max_age_seconds": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 315360000
+          },
+          "repositories": {
+            "minItems": 1,
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$"
+            }
+          },
+          "allowed_execution_kinds": {
+            "minItems": 1,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mocked",
+                "synthetic"
+              ]
+            }
+          },
+          "deferred": {
+            "type": "object",
+            "properties": {
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "reason"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "severity",
+          "required_level",
+          "required_environment",
+          "max_age_seconds"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "maxLength": 100
+      },
+      "additionalProperties": {}
+    }
+  },
+  "required": [
+    "schema_version",
+    "name",
+    "repositories",
+    "requirements"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:proofgate:schema:manifest:1",
+  "title": "Requirements manifest (authored as YAML or JSON)"
+}

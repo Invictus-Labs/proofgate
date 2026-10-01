@@ -1,0 +1,566 @@
+{
+ "about": "Failure messages CAPTURED from real runs of vitest 5.0.2 (30 probes) and Playwright 1.63.0 (21 probes) with the JSON reporter, paths scrubbed and each message cut at 16 lines. `expected` is how scripts/kill-rule.mjs must classify the probe: a failed expectation (assertion), a timeout, or anything else (error: a mutant is SUSPECT, never killed). Notes: v25 is an Error whose name was set to AssertionError (its message is that of a real AssertionError: the report cannot tell them apart, and it is an assertion); v14 and v16 are real vitest failures of `expect.poll` and `.resolves` whose message starts with `Error:` (classified as errors: the safe direction); p14 is a Playwright `expect.poll` that timed out.",
+ "cases": [
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v01 toBe",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected 1 to be 2 // Object.is equality\n    at <path>:4:34\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v02 toEqual",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected { a: 1 } to deeply equal { a: 2 }\n    at <path>:5:44\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v03 toContain",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected 'abc' to contain 'z'\n    at <path>:6:43\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v04 toBeNull",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected 1 to be null\n    at <path>:7:38\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v05 toBeTruthy",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected +0 to be truthy\n    at <path>:8:40\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v06 toBeGreaterThan",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected 1 to be greater than 2\n    at <path>:9:45\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v07 toHaveLength",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected [ 1 ] to have a length of 3 but got 1\n    at Proxy.<anonymous> (file:///<path>)\n    at Proxy.<anonymous> (file:///<path>)\n    at Proxy.methodWrapper (file:///<path>)\n    at <path>:10:44\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v08 toThrow",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected [Function] to throw an error\n    at Proxy.<anonymous> (file:///<path>)\n    at Proxy.<anonymous> (file:///<path>)\n    at Proxy.methodWrapper (file:///<path>)\n    at <path>:11:43\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v09 toMatch",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected 'abc' to match /z/\n    at <path>:12:41\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v10 toBeDefined",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected undefined to be defined\n    at <path>:13:49\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v11 labelled toBe",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: the label: expected 1 to be 2 // Object.is equality\n    at <path>:14:56\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v12 not.toBe",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected 1 not to be 1 // Object.is equality\n    at <path>:15:42\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v13 soft",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected 1 to be 2 // Object.is equality\n    at <path>:16:39\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v14 poll timeout",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: expected 1 to be 2 // Object.is equality\n    at Proxy.__VITEST_POLL_CHAIN__ (file:///<path>)\n    at <path>:17:96\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v15 rejects",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: promise resolved \"1\" instead of rejecting\n    at _Assertion.__VITEST_REJECTS__ (file:///<path>)\n    at _Assertion.propertyGetter (file:///<path>)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///<path>)\n    at <path>:18:65\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v16 resolves",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: expected 1 to be 2 // Object.is equality\n    at _Assertion.__VITEST_RESOLVES__ (file:///<path>)\n    at _Assertion.propertyGetter (file:///<path>)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///<path>)\n    at <path>:19:66\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v17 inline snapshot",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: Snapshot `v17 inline snapshot 1` mismatched\n    at assertMatchResult (file:///<path>)\n    at Proxy.__INLINE_SNAPSHOT_OFFSET_3__ (file:///<path>)\n    at Proxy.<anonymous> (file:///<path>)\n    at Proxy.methodWrapper (file:///<path>)\n    at <path>:20:47\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v18 node assert",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 2\n\n    at <path>:21:38\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v19 thrown single line",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: expected the config to be loaded\n    at <path>:22:44\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v20 thrown wrapper",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: wrapper: AssertionError happened\n    at <path>:23:40\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v21 thrown multi-line AssertionError",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: helper failed\nAssertionError: x\n    at <path>:24:58\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v22 thrown Expected/Received",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: bad\nExpected: 1\nReceived: 2\n    at <path>:25:50\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v23 thrown expect(page)",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: expect(page) was never reached\n    at <path>:26:45\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v24 thrown blank line then expect",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: helper failed\n\nexpect(x).toBe(y) not reached\n    at <path>:27:55\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v25 error renamed AssertionError",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: renamed\n    at <path>:28:58\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v26 TypeError",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "TypeError: Cannot read properties of null (reading 'x')\n    at <path>:29:68\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v27 ReferenceError",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "TypeError: globalThis.nope is not a function\n    at <path>:30:82\n    at file:///<path>\n    at file:///<path>\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///<path>)\n    at file:///<path>\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///<path>)\n    at file:///<path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v28 waitFor timeout",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: not yet\n    at __vite_ssr_import_1__.vi.waitFor.timeout (<path>:31:72)\n    at Timeout.checkCallback (file:///<path>)\n    at listOnTimeout (node:internal/timers:605:17)\n    at processTimers (node:internal/timers:541:7)"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v29 test timeout",
+   "status": "failed",
+   "expected": "timeout",
+   "messages": [
+    "Error: Test timed out in 50ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n    at task (file:///<path>)\n    at Object.<anonymous> (file:///<path>)\n    at Object.<anonymous> (file:///<path>)\n    at chain (file:///<path>)\n    at <path>:32:1\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleEvaluator._runInlinedModule (file:///<path>)\n    at VitestModuleRunner.directRequest (file:///<path>)\n    at VitestModuleRunner.cachedRequest (file:///<path>)\n    at VitestModuleRunner.import (file:///<path>)"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "v30 thrown string",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "just a string"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p01 toBe",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  1 | import { expect, test } from \"@playwright/test\";\n  2 |\n> 3 | test(\"p01 toBe\", () => { expect(1).toBe(2); });\n    |                                    ^\n  4 | test(\"p02 toEqual\", () => { expect({ a: 1 }).toEqual({ a: 2 }); });\n  5 | test(\"p03 toContain\", () => { expect(\"abc\").toContain(\"z\"); });\n  6 | test(\"p04 toBeNull\", () => { expect(1).toBeNull(); });\n    at <path>:3:36"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p02 toEqual",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"a\": 2,\u001b[39m\n\u001b[31m+   \"a\": 1,\u001b[39m\n\u001b[2m  }\u001b[22m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"a\": 2,\u001b[39m\n\u001b[31m+   \"a\": 1,\u001b[39m\n\u001b[2m  }\u001b[22m\n\n  2 |\n  3 | test(\"p01 toBe\", () => { expect(1).toBe(2); });\n> 4 | test(\"p02 toEqual\", () => { expect({ a: 1 }).toEqual({ a: 2 }); });\n    |                                              ^\n  5 | test(\"p03 toContain\", () => { expect(\"abc\").toContain(\"z\"); });\n  6 | test(\"p04 toBeNull\", () => { expect(1).toBeNull(); });"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p03 toContain",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"z\"\u001b[39m\nReceived string:    \u001b[31m\"abc\"\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"z\"\u001b[39m\nReceived string:    \u001b[31m\"abc\"\u001b[39m\n\n  3 | test(\"p01 toBe\", () => { expect(1).toBe(2); });\n  4 | test(\"p02 toEqual\", () => { expect({ a: 1 }).toEqual({ a: 2 }); });\n> 5 | test(\"p03 toContain\", () => { expect(\"abc\").toContain(\"z\"); });\n    |                                             ^\n  6 | test(\"p04 toBeNull\", () => { expect(1).toBeNull(); });\n  7 | test(\"p05 toBeTruthy\", () => { expect(0).toBeTruthy(); });\n  8 | test(\"p06 toBeGreaterThan\", () => { expect(1).toBeGreaterThan(2); });\n    at <path>:5:45"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p04 toBeNull",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31m1\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31m1\u001b[39m\n\n  4 | test(\"p02 toEqual\", () => { expect({ a: 1 }).toEqual({ a: 2 }); });\n  5 | test(\"p03 toContain\", () => { expect(\"abc\").toContain(\"z\"); });\n> 6 | test(\"p04 toBeNull\", () => { expect(1).toBeNull(); });\n    |                                        ^\n  7 | test(\"p05 toBeTruthy\", () => { expect(0).toBeTruthy(); });\n  8 | test(\"p06 toBeGreaterThan\", () => { expect(1).toBeGreaterThan(2); });\n  9 | test(\"p07 toHaveLength\", () => { expect([1]).toHaveLength(3); });\n    at <path>:6:40"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p05 toBeTruthy",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31m0\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31m0\u001b[39m\n\n   5 | test(\"p03 toContain\", () => { expect(\"abc\").toContain(\"z\"); });\n   6 | test(\"p04 toBeNull\", () => { expect(1).toBeNull(); });\n>  7 | test(\"p05 toBeTruthy\", () => { expect(0).toBeTruthy(); });\n     |                                          ^\n   8 | test(\"p06 toBeGreaterThan\", () => { expect(1).toBeGreaterThan(2); });\n   9 | test(\"p07 toHaveLength\", () => { expect([1]).toHaveLength(3); });\n  10 | test(\"p08 toThrow\", () => { expect(() => 1).toThrow(); });\n    at <path>:7:42"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p06 toBeGreaterThan",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m2\u001b[39m\nReceived:   \u001b[31m1\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m2\u001b[39m\nReceived:   \u001b[31m1\u001b[39m\n\n   6 | test(\"p04 toBeNull\", () => { expect(1).toBeNull(); });\n   7 | test(\"p05 toBeTruthy\", () => { expect(0).toBeTruthy(); });\n>  8 | test(\"p06 toBeGreaterThan\", () => { expect(1).toBeGreaterThan(2); });\n     |                                               ^\n   9 | test(\"p07 toHaveLength\", () => { expect([1]).toHaveLength(3); });\n  10 | test(\"p08 toThrow\", () => { expect(() => 1).toThrow(); });\n  11 | test(\"p09 toBeDefined\", () => { expect(undefined).toBeDefined(); });\n    at <path>:8:47"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p07 toHaveLength",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoHaveLength\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected length: \u001b[32m3\u001b[39m\nReceived length: \u001b[31m1\u001b[39m\nReceived array:  \u001b[31m[1]\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoHaveLength\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected length: \u001b[32m3\u001b[39m\nReceived length: \u001b[31m1\u001b[39m\nReceived array:  \u001b[31m[1]\u001b[39m\n\n   7 | test(\"p05 toBeTruthy\", () => { expect(0).toBeTruthy(); });\n   8 | test(\"p06 toBeGreaterThan\", () => { expect(1).toBeGreaterThan(2); });\n>  9 | test(\"p07 toHaveLength\", () => { expect([1]).toHaveLength(3); });\n     |                                              ^\n  10 | test(\"p08 toThrow\", () => { expect(() => 1).toThrow(); });\n  11 | test(\"p09 toBeDefined\", () => { expect(undefined).toBeDefined(); });\n  12 | test(\"p10 labelled toBe\", () => { expect(1, \"the label\").toBe(2); });\n    at <path>:9:46"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p08 toThrow",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoThrow\u001b[2m()\u001b[22m\n\nReceived function did not throw",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoThrow\u001b[2m()\u001b[22m\n\nReceived function did not throw\n\n   8 | test(\"p06 toBeGreaterThan\", () => { expect(1).toBeGreaterThan(2); });\n   9 | test(\"p07 toHaveLength\", () => { expect([1]).toHaveLength(3); });\n> 10 | test(\"p08 toThrow\", () => { expect(() => 1).toThrow(); });\n     |                                             ^\n  11 | test(\"p09 toBeDefined\", () => { expect(undefined).toBeDefined(); });\n  12 | test(\"p10 labelled toBe\", () => { expect(1, \"the label\").toBe(2); });\n  13 | test(\"p11 multi-line label\", () => { expect(1, \"first line of the label\\nsecond line\").toBe(2); });\n    at <path>:10:45"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p09 toBeDefined",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeDefined\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeDefined\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n\n   9 | test(\"p07 toHaveLength\", () => { expect([1]).toHaveLength(3); });\n  10 | test(\"p08 toThrow\", () => { expect(() => 1).toThrow(); });\n> 11 | test(\"p09 toBeDefined\", () => { expect(undefined).toBeDefined(); });\n     |                                                   ^\n  12 | test(\"p10 labelled toBe\", () => { expect(1, \"the label\").toBe(2); });\n  13 | test(\"p11 multi-line label\", () => { expect(1, \"first line of the label\\nsecond line\").toBe(2); });\n  14 | test(\"p12 not.toBe\", () => { expect(1).not.toBe(1); });\n    at <path>:11:51"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p10 labelled toBe",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: the label\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+    "Error: the label\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  10 | test(\"p08 toThrow\", () => { expect(() => 1).toThrow(); });\n  11 | test(\"p09 toBeDefined\", () => { expect(undefined).toBeDefined(); });\n> 12 | test(\"p10 labelled toBe\", () => { expect(1, \"the label\").toBe(2); });\n     |                                                          ^\n  13 | test(\"p11 multi-line label\", () => { expect(1, \"first line of the label\\nsecond line\").toBe(2); });\n  14 | test(\"p12 not.toBe\", () => { expect(1).not.toBe(1); });\n  15 | test(\"p13 soft\", () => { expect.soft(1).toBe(2); });\n    at <path>:12:58"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p11 multi-line label",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: first line of the label\nsecond line\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+    "Error: first line of the label\nsecond line\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  11 | test(\"p09 toBeDefined\", () => { expect(undefined).toBeDefined(); });\n  12 | test(\"p10 labelled toBe\", () => { expect(1, \"the label\").toBe(2); });\n> 13 | test(\"p11 multi-line label\", () => { expect(1, \"first line of the label\\nsecond line\").toBe(2); });\n     |                                                                                        ^\n  14 | test(\"p12 not.toBe\", () => { expect(1).not.toBe(1); });\n  15 | test(\"p13 soft\", () => { expect.soft(1).toBe(2); });\n  16 | test(\"p14 poll\", async () => { await expect.poll(() => 1, { timeout: 100, intervals: [20] }).toBe(2); });\n    at <path>:13:88"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p12 not.toBe",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m1\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m1\u001b[39m\n\n  12 | test(\"p10 labelled toBe\", () => { expect(1, \"the label\").toBe(2); });\n  13 | test(\"p11 multi-line label\", () => { expect(1, \"first line of the label\\nsecond line\").toBe(2); });\n> 14 | test(\"p12 not.toBe\", () => { expect(1).not.toBe(1); });\n     |                                            ^\n  15 | test(\"p13 soft\", () => { expect.soft(1).toBe(2); });\n  16 | test(\"p14 poll\", async () => { await expect.poll(() => 1, { timeout: 100, intervals: [20] }).toBe(2); });\n  17 | test(\"p15 thrown single line\", () => { throw new Error(\"expected the config to be loaded\"); });\n    at <path>:14:44"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p13 soft",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  13 | test(\"p11 multi-line label\", () => { expect(1, \"first line of the label\\nsecond line\").toBe(2); });\n  14 | test(\"p12 not.toBe\", () => { expect(1).not.toBe(1); });\n> 15 | test(\"p13 soft\", () => { expect.soft(1).toBe(2); });\n     |                                         ^\n  16 | test(\"p14 poll\", async () => { await expect.poll(() => 1, { timeout: 100, intervals: [20] }).toBe(2); });\n  17 | test(\"p15 thrown single line\", () => { throw new Error(\"expected the config to be loaded\"); });\n  18 | test(\"p16 thrown wrapper\", () => { throw new Error(\"wrapper: AssertionError happened\"); });\n    at <path>:15:41"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p14 poll",
+   "status": "failed",
+   "expected": "timeout",
+   "messages": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\nCall Log:\n- Timeout 100ms exceeded while waiting on the predicate",
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\nCall Log:\n- Timeout 100ms exceeded while waiting on the predicate\n\n  14 | test(\"p12 not.toBe\", () => { expect(1).not.toBe(1); });\n  15 | test(\"p13 soft\", () => { expect.soft(1).toBe(2); });\n> 16 | test(\"p14 poll\", async () => { await expect.poll(() => 1, { timeout: 100, intervals: [20] }).toBe(2); });\n     |                                                                                              ^\n  17 | test(\"p15 thrown single line\", () => { throw new Error(\"expected the config to be loaded\"); });\n  18 | test(\"p16 thrown wrapper\", () => { throw new Error(\"wrapper: AssertionError happened\"); });\n  19 | test(\"p17 thrown multi-line AssertionError\", () => { throw new Error(\"helper failed\\nAssertionError: x\"); });\n    at <path>:16:94"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p15 thrown single line",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: expected the config to be loaded",
+    "Error: expected the config to be loaded\n\n  15 | test(\"p13 soft\", () => { expect.soft(1).toBe(2); });\n  16 | test(\"p14 poll\", async () => { await expect.poll(() => 1, { timeout: 100, intervals: [20] }).toBe(2); });\n> 17 | test(\"p15 thrown single line\", () => { throw new Error(\"expected the config to be loaded\"); });\n     |                                              ^\n  18 | test(\"p16 thrown wrapper\", () => { throw new Error(\"wrapper: AssertionError happened\"); });\n  19 | test(\"p17 thrown multi-line AssertionError\", () => { throw new Error(\"helper failed\\nAssertionError: x\"); });\n  20 | test(\"p18 thrown Expected/Received\", () => { throw new Error(\"bad\\nExpected: 1\\nReceived: 2\"); });\n    at <path>:17:46"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p16 thrown wrapper",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: wrapper: AssertionError happened",
+    "Error: wrapper: AssertionError happened\n\n  16 | test(\"p14 poll\", async () => { await expect.poll(() => 1, { timeout: 100, intervals: [20] }).toBe(2); });\n  17 | test(\"p15 thrown single line\", () => { throw new Error(\"expected the config to be loaded\"); });\n> 18 | test(\"p16 thrown wrapper\", () => { throw new Error(\"wrapper: AssertionError happened\"); });\n     |                                          ^\n  19 | test(\"p17 thrown multi-line AssertionError\", () => { throw new Error(\"helper failed\\nAssertionError: x\"); });\n  20 | test(\"p18 thrown Expected/Received\", () => { throw new Error(\"bad\\nExpected: 1\\nReceived: 2\"); });\n  21 | test(\"p19 thrown expect(page)\", () => { throw new Error(\"expect(page) was never reached\"); });\n    at <path>:18:42"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p17 thrown multi-line AssertionError",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: helper failed\nAssertionError: x",
+    "Error: helper failed\nAssertionError: x\n\n  17 | test(\"p15 thrown single line\", () => { throw new Error(\"expected the config to be loaded\"); });\n  18 | test(\"p16 thrown wrapper\", () => { throw new Error(\"wrapper: AssertionError happened\"); });\n> 19 | test(\"p17 thrown multi-line AssertionError\", () => { throw new Error(\"helper failed\\nAssertionError: x\"); });\n     |                                                            ^\n  20 | test(\"p18 thrown Expected/Received\", () => { throw new Error(\"bad\\nExpected: 1\\nReceived: 2\"); });\n  21 | test(\"p19 thrown expect(page)\", () => { throw new Error(\"expect(page) was never reached\"); });\n  22 | test(\"p20 thrown blank line then expect\", () => { throw new Error(\"helper failed\\n\\nexpect(x).toBe(y) not reached\"); });\n    at <path>:19:60"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p18 thrown Expected/Received",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: bad\nExpected: 1\nReceived: 2",
+    "Error: bad\nExpected: 1\nReceived: 2\n\n  18 | test(\"p16 thrown wrapper\", () => { throw new Error(\"wrapper: AssertionError happened\"); });\n  19 | test(\"p17 thrown multi-line AssertionError\", () => { throw new Error(\"helper failed\\nAssertionError: x\"); });\n> 20 | test(\"p18 thrown Expected/Received\", () => { throw new Error(\"bad\\nExpected: 1\\nReceived: 2\"); });\n     |                                                    ^\n  21 | test(\"p19 thrown expect(page)\", () => { throw new Error(\"expect(page) was never reached\"); });\n  22 | test(\"p20 thrown blank line then expect\", () => { throw new Error(\"helper failed\\n\\nexpect(x).toBe(y) not reached\"); });\n  23 | test(\"p21 test timeout\", async () => { test.setTimeout(50); await new Promise((resolve) => setTimeout(resolve, 500)); });\n    at <path>:20:52"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p19 thrown expect(page)",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: expect(page) was never reached",
+    "Error: expect(page) was never reached\n\n  19 | test(\"p17 thrown multi-line AssertionError\", () => { throw new Error(\"helper failed\\nAssertionError: x\"); });\n  20 | test(\"p18 thrown Expected/Received\", () => { throw new Error(\"bad\\nExpected: 1\\nReceived: 2\"); });\n> 21 | test(\"p19 thrown expect(page)\", () => { throw new Error(\"expect(page) was never reached\"); });\n     |                                               ^\n  22 | test(\"p20 thrown blank line then expect\", () => { throw new Error(\"helper failed\\n\\nexpect(x).toBe(y) not reached\"); });\n  23 | test(\"p21 test timeout\", async () => { test.setTimeout(50); await new Promise((resolve) => setTimeout(resolve, 500)); });\n  24 |\n    at <path>:21:47"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p20 thrown blank line then expect",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: helper failed\n\nexpect(x).toBe(y) not reached",
+    "Error: helper failed\n\nexpect(x).toBe(y) not reached\n\n  20 | test(\"p18 thrown Expected/Received\", () => { throw new Error(\"bad\\nExpected: 1\\nReceived: 2\"); });\n  21 | test(\"p19 thrown expect(page)\", () => { throw new Error(\"expect(page) was never reached\"); });\n> 22 | test(\"p20 thrown blank line then expect\", () => { throw new Error(\"helper failed\\n\\nexpect(x).toBe(y) not reached\"); });\n     |                                                         ^\n  23 | test(\"p21 test timeout\", async () => { test.setTimeout(50); await new Promise((resolve) => setTimeout(resolve, 500)); });\n  24 |\n    at <path>:22:57"
+   ]
+  },
+  {
+   "runner": "playwright 1.63.0",
+   "probe": "p21 test timeout",
+   "status": "timedOut",
+   "expected": "timeout",
+   "messages": [
+    "\u001b[31mTest timeout of 50ms exceeded.\u001b[39m",
+    "\u001b[31mTest timeout of 50ms exceeded.\u001b[39m"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r01 rejects.toMatchObject mismatch",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: expected Error: coded { code: 'a' } to match object { code: 'b' }\n    at _Assertion.__VITEST_REJECTS__ (file:///<path>/node_modules/vitest/dist/chunks/index.DGdajAO2.js:2464:33)\n    at _Assertion.propertyGetter (file:///<path>/node_modules/chai/index.js:1570:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///<path>/node_modules/chai/index.js:1659:22)\n    at <path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r02 rejects.toThrow mismatch",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: expected [Function] to throw error including 'y' but got 'x'\n    at _Assertion.__VITEST_REJECTS__ (file:///<path>/node_modules/vitest/dist/chunks/index.DGdajAO2.js:2464:33)\n    at _Assertion.propertyGetter (file:///<path>/node_modules/chai/index.js:1570:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///<path>/node_modules/chai/index.js:1659:22)\n    at <path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r03 rejects.toEqual mismatch",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: expected Error: x to deeply equal Error: y\n    at _Assertion.__VITEST_REJECTS__ (file:///<path>/node_modules/vitest/dist/chunks/index.DGdajAO2.js:2464:33)\n    at _Assertion.propertyGetter (file:///<path>/node_modules/chai/index.js:1570:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///<path>/node_modules/chai/index.js:1659:22)\n    at <path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r04 rejects.toBe mismatch",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: expected 1 to be 2 // Object.is equality\n    at _Assertion.__VITEST_REJECTS__ (file:///<path>/node_modules/vitest/dist/chunks/index.DGdajAO2.js:2464:33)\n    at _Assertion.propertyGetter (file:///<path>/node_modules/chai/index.js:1570:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///<path>/node_modules/chai/index.js:1659:22)\n    at <path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r05 resolves.toMatchObject mismatch",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: expected { a: 1 } to match object { a: 2 }\n    at _Assertion.__VITEST_RESOLVES__ (file:///<path>/node_modules/vitest/dist/chunks/index.DGdajAO2.js:2435:33)\n    at _Assertion.propertyGetter (file:///<path>/node_modules/chai/index.js:1570:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///<path>/node_modules/chai/index.js:1659:22)\n    at <path>"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r06 toMatchObject mismatch",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "AssertionError: expected { a: 1 } to match object { a: 2 }\n    at Proxy.<anonymous> (file:///<path>/node_modules/vitest/dist/chunks/index.DGdajAO2.js:2051:10)\n    at Proxy.<anonymous> (file:///<path>/node_modules/vitest/dist/chunks/index.DGdajAO2.js:1945:14)\n    at Proxy.methodWrapper (file:///<path>/node_modules/chai/index.js:1700:25)\n    at <path>\n    at file:///<path>/node_modules/vitest/dist/chunks/run.C5UmxDPh.js:1628:35"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r07 thrown look-alike",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: expected { code: 'a' } to match object { code: 'b' }\n at _Assertion.__VITEST_REJECTS__ (fake)\n    at <path>\n    at file:///<path>/node_modules/vitest/dist/chunks/run.C5UmxDPh.js:1628:35\n    at file:///<path>/node_modules/vitest/dist/chunks/run.C5UmxDPh.js:2783:26\n    at file:///<path>/node_modules/vitest/dist/chunks/run.C5UmxDPh.js:3319:20"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r08 thrown plain look-alike",
+   "status": "failed",
+   "expected": "error",
+   "messages": [
+    "Error: expected { code: 'a' } to match object { code: 'b' }\n    at <path>\n    at file:///<path>/node_modules/vitest/dist/chunks/run.C5UmxDPh.js:1628:35\n    at file:///<path>/node_modules/vitest/dist/chunks/run.C5UmxDPh.js:2783:26\n    at file:///<path>/node_modules/vitest/dist/chunks/run.C5UmxDPh.js:3319:20\n    at new Promise (<anonymous>)"
+   ]
+  },
+  {
+   "runner": "vitest 5.0.2",
+   "probe": "r09 rejects.toMatchObject mismatch, labelled",
+   "status": "failed",
+   "expected": "assertion",
+   "messages": [
+    "Error: label: expected Error: coded { code: 'a' } to match object { code: 'b' }\n    at _Assertion.__VITEST_REJECTS__ (file:///<path>/node_modules/vitest/dist/chunks/index.DGdajAO2.js:2464:33)\n    at _Assertion.propertyGetter (file:///<path>/node_modules/chai/index.js:1570:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///<path>/node_modules/chai/index.js:1659:22)\n    at <path>"
+   ]
+  }
+ ]
+}
