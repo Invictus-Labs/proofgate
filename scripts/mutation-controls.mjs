@@ -2,6 +2,8 @@
 // test suite to FAIL. A control that does not bite would mean the tests cannot detect that class of defect.
 // Usage: npm run mutation-controls   (exit 0 only if the baseline is green and every mutant is killed; MUTATION_JOBS sets the parallelism, default 4)
 import { checkMutantTargets, classify, describeResult, parseVitestJson, readResult, reportInstrumentCheck, runWithCap } from "./kill-rule.mjs";
+import { M79_ARGS, validM79Selection } from "./m79-selection.mjs";
+import { M86_ARGS, validM86Selection } from "./m86-selection.mjs";
 import { cpSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { cpus, tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -419,10 +421,14 @@ const RUN_CAP_MS = Number(process.env.MUTATION_RUN_CAP_MINUTES || 30) * 60 * 100
  * own JSON result file (see scripts/kill-rule.mjs), never from what the run printed. With MUTATION_JOBS above 1, timing-sensitive
  * tests can time out under load; such a run is SUSPECT, not a kill: rerun it with MUTATION_JOBS=1.
  */
-async function run(dir) {
+async function run(dir, selectedM79 = false, selectedM86 = false) {
+  if (selectedM79 && selectedM86) throw new Error("Only one exact finite control may be selected");
   const resultPath = join(dir, ".kill-rule-result.json");
-  const r = await runWithCap("npx", ["vitest", "run", "--reporter=json", `--outputFile=${resultPath}`], { cwd: dir, env: { ...process.env, CI: "1" }, timeoutMs: RUN_CAP_MS });
-  return { ...r, parsed: readResult(resultPath, parseVitestJson) };
+  const r = await runWithCap("npx", ["vitest", "run", ...(selectedM79 ? M79_ARGS : selectedM86 ? M86_ARGS : []), "--reporter=json", `--outputFile=${resultPath}`], { cwd: dir, env: { ...process.env, CI: "1" }, timeoutMs: RUN_CAP_MS });
+  const selectionValid = (!selectedM79 && !selectedM86) || readResult(resultPath, (text) => {
+    try { return (selectedM79 ? validM79Selection : validM86Selection)(JSON.parse(text), r.code); } catch { return false; }
+  }) === true;
+  return { ...r, selectionValid, parsed: selectionValid ? readResult(resultPath, parseVitestJson) : undefined };
 }
 
 function scratch() {
@@ -445,6 +451,26 @@ if (baseline.code !== 0) {
   process.exit(1);
 }
 
+// The separately selected finite-work control must itself be green on unmutated sources.
+const selectedBase = scratch();
+const selectedBaseline = await run(selectedBase, true);
+console.log(`M79 selected baseline (unmutated): exit ${selectedBaseline.code}, exact selection ${selectedBaseline.selectionValid}`);
+rmSync(selectedBase, { recursive: true, force: true });
+if (selectedBaseline.code !== 0 || !selectedBaseline.selectionValid || selectedBaseline.parsed?.failed !== 0) {
+  console.error("M79 selected baseline is not independently green; control is meaningless");
+  process.exit(1);
+}
+
+// M86's separate finite collision control must also be independently green.
+const selectedM86Base = scratch();
+const selectedM86Baseline = await run(selectedM86Base, false, true);
+console.log(`M86 selected baseline (unmutated): exit ${selectedM86Baseline.code}, exact selection ${selectedM86Baseline.selectionValid}`);
+rmSync(selectedM86Base, { recursive: true, force: true });
+if (selectedM86Baseline.code !== 0 || !selectedM86Baseline.selectionValid || selectedM86Baseline.parsed?.failed !== 0) {
+  console.error("M86 selected baseline is not independently green; control is meaningless");
+  process.exit(1);
+}
+
 // Mutants are independent (each has its own scratch copy and build), so run a few at a time.
 const jobs = Math.max(1, Number(process.env.MUTATION_JOBS) || Math.min(4, cpus().length));
 let bad = 0;
@@ -463,7 +489,7 @@ async function worker() {
       continue;
     }
     writeFileSync(path, text.replace(find, () => replace));
-    const result = await run(dir);
+    const result = await run(dir, /^M79 /.test(name), /^M86 /.test(name));
     // A mutant only counts as killed by a FAILING TEST. A red run with no failing test (a mutant that no longer compiles, a
     // crashed worker) proves nothing about the tests, so it is reported as SUSPECT and counted as a control that did not bite.
     // The shared rule (scripts/kill-rule.mjs) also treats a run whose every failure was a timeout as SUSPECT, and names the first

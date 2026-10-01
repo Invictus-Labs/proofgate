@@ -247,7 +247,9 @@ describe("E2E AC-01 schema and artifact tamper (packaged binary)", () => {
       "a receipt whose artifact file is missing",
       "artifact_missing",
       async (ws) => {
-        await writeReceipt(ws, { receipt: { artifact: { path: "artifacts/gone.xml", sha256: sha256("x") } } });
+        const receipt = await writeReceipt(ws);
+        // Remove the referenced artifact itself: changing its path leaves an orphan file that the strict tree guard refuses first.
+        await rm(join(ws.receiptsDir, (receipt.artifact as { path: string }).path));
       },
     ],
     [
