@@ -1,4 +1,5 @@
 import { ProofGateError, type ErrorCode } from "./errors.js";
+import { redactString, redactValue } from "./redact.js";
 
 /**
  * Identifier fields are COMPARED (a receipt's environment against the required one, its repository and requirement ids
@@ -73,3 +74,48 @@ export const MANIFEST_IDENTIFIER_PATHS: readonly Path[] = [
   ["requirements", "*", "required_environment"],
   ["requirements", "*", "repositories"],
 ];
+
+/** The report fields that hold lists of identifiers (each element was checked unredacted when its source document was loaded). */
+export const REPORT_IDENTIFIER_LIST_PATHS: readonly Path[] = [
+  ["requirements", "*", "repositories"],
+  ["requirements", "*", "receipt_ids"],
+  ["requirements", "*", "environments"],
+  ["requirements", "*", "per_repository", "*", "receipt_ids"],
+  ["receipts", "*", "requirement_ids"],
+];
+
+/** The places `path` reaches in `value`, as [parent, key] pairs, so the value there can be replaced. */
+function slots(value: unknown, path: Path): Array<[Record<string, unknown> | unknown[], string]> {
+  const [head, ...rest] = path;
+  if (head === undefined || value === null || typeof value !== "object") return [];
+  if (head === "*") {
+    if (!Array.isArray(value)) return [];
+    return value.flatMap((item, i) => (rest.length === 0 ? [[value, String(i)] as [unknown[], string]] : slots(item, rest)));
+  }
+  if (Array.isArray(value) || !Object.hasOwn(value, head)) return [];
+  const record = value as Record<string, unknown>;
+  return rest.length === 0 ? [[record, head]] : slots(record[head], rest);
+}
+
+/**
+ * Deep-redact a document, but judge the elements of the identifier lists at `paths` one by one. The list-pair rule
+ * (`["--password", "S"]`: the element after a credential name is a value) is for argument lists; applied to a list of ids it
+ * rewrote the id after `AUTH-001`, `auth` or `auth-e2e-api-001`, so legitimate manifests and receipts were refused and a finished
+ * report was written with `[REDACTED]` in place of an evidence id. A credential-looking id is still rewritten here (and refused by
+ * assertIdentifiersUnredacted).
+ */
+export function redactDocument<T>(raw: T, paths: readonly Path[]): T {
+  const redacted = redactValue(raw);
+  for (const path of paths) {
+    const before = slots(raw, path);
+    const after = slots(redacted, path);
+    if (before.length !== after.length) continue;
+    for (const [i, [parent, key]] of before.entries()) {
+      const list = (parent as Record<string, unknown>)[key];
+      const [target, targetKey] = after[i] as [Record<string, unknown>, string];
+      if (!Array.isArray(list) || !Array.isArray(target[targetKey]) || (target[targetKey] as unknown[]).length !== list.length) continue;
+      target[targetKey] = list.map((item: unknown) => (typeof item === "string" ? redactString(item) : redactValue(item)));
+    }
+  }
+  return redacted;
+}

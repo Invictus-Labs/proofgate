@@ -2,10 +2,9 @@ import { stat, readFile } from "node:fs/promises";
 import { isScalar, parseDocument as parseYamlDocument, visit } from "yaml";
 import { assertJsonDepth, assertPlainJson, compareStrings, hashCanonical } from "./canonical.js";
 import { ProofGateError } from "./errors.js";
-import { MANIFEST_IDENTIFIER_PATHS, assertIdentifiersUnredacted } from "./identifiers.js";
+import { MANIFEST_IDENTIFIER_PATHS, assertIdentifiersUnredacted, redactDocument } from "./identifiers.js";
 import { DEFAULT_LIMITS, MAX_EXTENSION_DEPTH, MAX_YAML_NODES, type Limits } from "./limits.js";
 import { parseJsonStrict } from "./json.js";
-import { redactValue } from "./redact.js";
 import { manifestSchema, parseDocument, type NormalizedManifest, type NormalizedRequirement } from "./schemas.js";
 import { POLICY_ENGINE_VERSION } from "./version.js";
 
@@ -112,7 +111,7 @@ function finishManifest(raw: unknown, label: string): LoadedManifest {
     if (ext !== undefined) assertJsonDepth(ext, MAX_EXTENSION_DEPTH, `${label} extensions`);
   }
   assertPlainJson(raw, label, "manifest_schema_invalid");
-  const redacted = redactValue(raw);
+  const redacted = redactDocument(raw, MANIFEST_IDENTIFIER_PATHS);
   assertIdentifiersUnredacted(raw, redacted, MANIFEST_IDENTIFIER_PATHS, label, "manifest_schema_invalid");
   const parsed = parseDocument(manifestSchema, redacted, "manifest", label);
   const manifest = normalizeManifest(parsed);

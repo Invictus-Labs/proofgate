@@ -214,7 +214,7 @@ A requirement resolves to PASS, FAIL, STALE, MISSING, PARTIAL or DEFERRED. DEFER
 
 ### Ecosystem adapter boundary
 
-Optional RunProof receipt importer; Mission Control consumes a sanitized report reference and status. ScopeGuard may supply approved requirements. No connector writes back in MVP.
+Optional RunProof receipt importer; a downstream dashboard may consume a sanitized report reference and status. ScopeGuard may supply approved requirements. No connector writes back in MVP.
 
 Adapters use a versioned envelope `{schema_version:1,event_id,source,resource_id,event_type,occurred_at,revision,evidence_ref}` with optional correlation_id. Deduplicate event_id at consumers, reject unsupported major versions and preserve ordering/version metadata. Delivery is at least once; consumers do not infer current state from an old event. Connections are optional and disabled by default. Export bundles work without network connectivity.
 

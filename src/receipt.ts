@@ -1,11 +1,11 @@
 import { compareStrings, hashCanonical } from "./canonical.js";
 import { adaptReceiptDocument, type AdapterInfo } from "./adapters/index.js";
 import { ProofGateError } from "./errors.js";
-import { RECEIPT_IDENTIFIER_PATHS, assertIdentifiersUnredacted } from "./identifiers.js";
+import { RECEIPT_IDENTIFIER_PATHS, assertIdentifiersUnredacted, redactDocument } from "./identifiers.js";
 import { parseJsonStrict } from "./json.js";
 import { hashConfined, openRoot, readConfined, scanTree, validateRelativePath, type Root, type TreeFile } from "./fsguard.js";
 import type { Limits } from "./limits.js";
-import { redactString, redactValue } from "./redact.js";
+import { redactString } from "./redact.js";
 import type { NormalizedManifest, Receipt } from "./schemas.js";
 
 export const RECEIPT_SUFFIX = ".receipt.json";
@@ -98,7 +98,7 @@ export async function loadReceiptSet(
       if (error instanceof ProofGateError) throw new ProofGateError(error.code, error.message, { ...error.detail, file: file.rel });
       throw new ProofGateError("receipt_invalid_json", `${file.rel} is not valid JSON`, { file: file.rel });
     }
-    const source_document = redactValue(raw);
+    const source_document = redactDocument(raw, RECEIPT_IDENTIFIER_PATHS);
     assertIdentifiersUnredacted(raw, source_document, RECEIPT_IDENTIFIER_PATHS, file.rel, "receipt_schema_invalid");
     const { receipt, adapter } = withFile(file.rel, () => adaptReceiptDocument(source_document, file.rel));
     withFile(file.rel, () => validateRelativePath(receipt.artifact.path));

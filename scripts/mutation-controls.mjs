@@ -201,7 +201,7 @@ const MUTANTS = [
   ["M187 run.id is not an identifier field","src/identifiers.ts","  [\"run\", \"id\"],\n",""],
   ["M188 binding.environment is not an identifier field","src/identifiers.ts","  [\"binding\", \"environment\"],\n",""],
   ["M189 only the first element of an array of objects is checked","src/identifiers.ts","return list.flatMap((item, i) =>","return list.slice(0, 1).flatMap((item, i) =>"],
-  ["M190 the per-requirement repositories are not identifier fields","src/identifiers.ts","  [\"requirements\", \"*\", \"repositories\"],\n",""],
+  ["M190 the per-requirement repositories are not identifier fields","src/identifiers.ts","  [\"requirements\", \"*\", \"required_environment\"],\n  [\"requirements\", \"*\", \"repositories\"],\n","  [\"requirements\", \"*\", \"required_environment\"],\n"],
   ["M191 binding.requirement_ids is not an identifier field","src/identifiers.ts","  [\"binding\", \"requirement_ids\"],\n",""],
   ["M192 the aggregate value budget over all receipts is nine million instead of three","src/json.ts","export const MAX_AGGREGATE_VALUES = 3_000_000;","export const MAX_AGGREGATE_VALUES = 9_000_000;"],
   ["M193 the aggregate container budget over all receipts is two million instead of one","src/json.ts","export const MAX_AGGREGATE_CONTAINERS = 1_000_000;","export const MAX_AGGREGATE_CONTAINERS = 2_000_000;"],

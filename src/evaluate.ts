@@ -2,7 +2,7 @@ import { compareStrings, hashCanonical, uuidFromHash } from "./canonical.js";
 import type { LoadedManifest } from "./manifest.js";
 import { computeReceiptsHash, type LoadedReceipt } from "./receipt.js";
 import type { LoadedRevisions } from "./revisions.js";
-import { redactValue } from "./redact.js";
+import { REPORT_IDENTIFIER_LIST_PATHS, redactDocument } from "./identifiers.js";
 import {
   LEVEL_RANK,
   STATUSES,
@@ -311,5 +311,5 @@ export function assess(input: AssessmentInput): Report {
     })),
   };
   // Inputs were redacted at load time; this final pass is a belt-and-braces guarantee for the exported document.
-  return redactValue(report);
+  return redactDocument(report, REPORT_IDENTIFIER_LIST_PATHS);
 }
