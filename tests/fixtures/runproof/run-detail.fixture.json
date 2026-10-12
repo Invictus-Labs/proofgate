@@ -1,0 +1,80 @@
+{
+  "format": "runproof.run-detail",
+  "schema_version": 1,
+  "source_kind": "fixture",
+  "runproof": {
+    "main_sha": "5e2f9af3310655116535b31ca99ab92210178431",
+    "basis": "Shape of GET /api/v1/runs/:id at the pinned RunProof main SHA. RunProof publishes no export endpoint, so this document is a labelled synthetic fixture, not a live export."
+  },
+  "run": {
+    "id": "run-nightly-20260929",
+    "workspace_id": "workspace-synthetic-1",
+    "workflow_id": "workflow-synthetic-1",
+    "workflow_name": "Nightly synthetic report",
+    "workflow_version": 1,
+    "external_run_id": "nightly-2026-09-29",
+    "started_at": "2026-09-29T11:25:00.000Z",
+    "finished_at": "2026-09-29T11:30:00.000Z",
+    "deadline_at": "2026-09-29T12:25:00.000Z",
+    "execution_status": "succeeded",
+    "exit_code": 0,
+    "outcome": "verified",
+    "current_evaluation": 1,
+    "outcome_updated_at": "2026-09-29T11:30:05.000Z",
+    "created_at": "2026-09-29T11:25:00.000Z",
+    "checks": [
+      {
+        "id": "check-demo-report",
+        "evaluation": 1,
+        "definition_id": "demo-report",
+        "definition_version": 1,
+        "collector_name": "local",
+        "target": "demo-report",
+        "required": true,
+        "state": "pass",
+        "expected": { "artifact": "demo-report", "min_bytes": 1 },
+        "observed": { "status": "present", "size_bytes": 31, "modified_at": "2026-09-29T11:29:59.000Z" },
+        "observed_at": "2026-09-29T11:30:01.000Z",
+        "reason_code": "ok",
+        "evidence_hash": "0b7e1f2d5c8a4e6f9a3b1c0d2e4f6a8b0c1d3e5f7a9b2c4d6e8f0a1b3c5d7e9f"
+      },
+      {
+        "id": "check-demo-manifest",
+        "evaluation": 1,
+        "definition_id": "demo-manifest",
+        "definition_version": 1,
+        "collector_name": "local",
+        "target": "demo-manifest",
+        "required": true,
+        "state": "pass",
+        "expected": { "artifact": "demo-manifest", "min_bytes": 1 },
+        "observed": { "status": "present", "size_bytes": 12, "modified_at": "2026-09-29T11:29:59.000Z" },
+        "observed_at": "2026-09-29T11:30:01.000Z",
+        "reason_code": "ok",
+        "evidence_hash": "1c8f2e3d6d9b5f7a0b4c2d1e3f5a7b9c1d2e4f6a8b0c3d5e7f9a1b2c4d6e8f0a"
+      }
+    ],
+    "events": [
+      {
+        "external_event_id": "evt-1",
+        "event_type": "run_finished",
+        "occurred_at": "2026-09-29T11:30:00.000Z",
+        "received_at": "2026-09-29T11:30:00.500Z",
+        "effect": "applied",
+        "redacted_payload": { "exit_code": 0 }
+      }
+    ],
+    "exceptions": [],
+    "collectors": [{ "name": "local", "status": "connected" }]
+  },
+  "binding": {
+    "requirement_ids": ["REQ-001"],
+    "repository": "api",
+    "commit_sha": "d5bea4eb09e82d153fafd07cb2b88f77c93767c2",
+    "environment": "staging",
+    "test_level": "integration",
+    "execution_kind": "live",
+    "runner_id": "runproof-fixture",
+    "artifact": { "path": "artifacts/runproof-evidence.txt", "sha256": "da6ef79f8b01cfd32de8384625651c913070697e65ee360bb267b94dafd06b75" }
+  }
+}

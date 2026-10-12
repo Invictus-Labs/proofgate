@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "revisions": [
+    {
+      "repository": "api",
+      "commit_sha": "d1ec81eb5402a6330282a1353a55c23f75679e14"
+    },
+    {
+      "repository": "web",
+      "commit_sha": "0fc24560cd3d6512f0508518f313de44bf0135e4"
+    }
+  ]
+}

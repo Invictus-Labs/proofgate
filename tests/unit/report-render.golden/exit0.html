@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'sha256-oq+2TyoBNK+DneO8WWpD4e+3gqOr6yfAs2Co6dy2rpY='; img-src 'none'; script-src 'none'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<title>ProofGate report: demo-release-gate (ACCEPTED)</title>
+<style>:root{--page:#ffffff;--surface:#f6f8fa;--text:#1f2328;--muted:#4a5560;--border:#8c959f;--link:#0a4fa8;--pass-fg:#0b4a2a;--pass-bg:#d8f3e3;--pass-bd:#137a45;--fail-fg:#7a1620;--fail-bg:#fde2e4;--fail-bd:#b3261e;--stale-fg:#5c4400;--stale-bg:#fff1c2;--stale-bd:#8a6500;--missing-fg:#383e45;--missing-bg:#e6e8eb;--missing-bd:#5b6570;--partial-fg:#7a3300;--partial-bg:#ffe6d2;--partial-bd:#b04a00;--deferred-fg:#3b2a78;--deferred-bg:#e9e3fb;--deferred-bd:#5b45b0;--unknown-fg:#383e45;--unknown-bg:#e6e8eb;--unknown-bd:#5b6570;--notice-fg:#5c4400;--notice-bg:#fff1c2;--notice-bd:#8a6500;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--page:#0d1117;--surface:#151b23;--text:#e6edf3;--muted:#a8b3bf;--border:#6e7a87;--link:#79b8ff;--pass-fg:#8ce6b0;--pass-bg:#0f2e1d;--pass-bd:#3fb56f;--fail-fg:#ffb1aa;--fail-bg:#3d1418;--fail-bd:#f0665c;--stale-fg:#f2cf6b;--stale-bg:#392e0b;--stale-bd:#c9a227;--missing-fg:#d0d7de;--missing-bg:#2b3138;--missing-bd:#8b96a2;--partial-fg:#ffbe8f;--partial-bg:#40230a;--partial-bd:#e0803a;--deferred-fg:#cfc0ff;--deferred-bg:#2a2150;--deferred-bd:#8f7be0;--unknown-fg:#d0d7de;--unknown-bg:#2b3138;--unknown-bd:#8b96a2;--notice-fg:#f2cf6b;--notice-bg:#392e0b;--notice-bd:#c9a227;}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:80rem;margin:0 auto;padding:1rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--surface);color:var(--link);padding:.5rem 1rem;border:2px solid var(--border);z-index:10}
+.skip:focus{left:1rem;top:1rem}
+h1{font-size:1.6rem;line-height:1.25;margin:.25rem 0 .5rem}
+h2{font-size:1.25rem;margin:2rem 0 .5rem;padding-top:.5rem;border-top:1px solid var(--border)}
+h3{font-size:1.05rem;margin:1.5rem 0 .5rem}
+p{margin:.5rem 0}
+a{color:var(--link)}
+a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+code{font:.875rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere;word-break:break-word}
+td,th,dd,li,code,p,h1,h2,h3,caption{unicode-bidi:isolate;overflow-wrap:anywhere}
+.muted{color:var(--muted)}
+.eyebrow{margin:0;color:var(--muted);font-size:.875rem;letter-spacing:.04em;text-transform:uppercase}
+.verdict{margin:1rem 0;padding:1rem 1.25rem;border-width:4px;border-radius:.5rem}
+.verdict h2{margin:0 0 .25rem;padding:0;border:0;font-size:1.6rem}
+.verdict p{color:inherit}
+.badge{display:inline-flex;align-items:baseline;gap:.35rem;padding:.1rem .55rem;border-width:2px;border-radius:.4rem;font-weight:700;font-size:.875rem;white-space:nowrap}
+.badge .sym{font-weight:400}
+.tag{display:inline-block;padding:0 .4rem;border:1px solid var(--border);border-radius:.3rem;font-size:.75rem;font-weight:700;letter-spacing:.04em;color:var(--muted)}
+.tag.strong{color:var(--text);border-color:var(--text)}
+.notice{margin:.5rem 0;padding:.5rem .75rem;border-width:2px;border-radius:.4rem}
+.tone-pass{color:var(--pass-fg);background:var(--pass-bg);border-color:var(--pass-bd);border-style:solid}
+.tone-fail{color:var(--fail-fg);background:var(--fail-bg);border-color:var(--fail-bd);border-style:solid}
+.tone-stale{color:var(--stale-fg);background:var(--stale-bg);border-color:var(--stale-bd);border-style:dashed}
+.tone-missing{color:var(--missing-fg);background:var(--missing-bg);border-color:var(--missing-bd);border-style:dotted}
+.tone-partial{color:var(--partial-fg);background:var(--partial-bg);border-color:var(--partial-bd);border-style:dashed}
+.tone-deferred{color:var(--deferred-fg);background:var(--deferred-bg);border-color:var(--deferred-bd);border-style:double}
+.tone-unknown{color:var(--unknown-fg);background:var(--unknown-bg);border-color:var(--unknown-bd);border-style:dotted}
+.tone-notice{color:var(--notice-fg);background:var(--notice-bg);border-color:var(--notice-bd);border-style:dashed}
+.scroll{overflow-x:auto;margin:.5rem 0;border:1px solid var(--border);border-radius:.4rem}
+table{border-collapse:collapse;width:100%;font-size:.9375rem}
+caption{text-align:left;padding:.5rem .75rem;font-weight:700;background:var(--surface);border-bottom:1px solid var(--border)}
+caption .muted{font-weight:400}
+th,td{text-align:left;vertical-align:top;padding:.5rem .75rem;border-bottom:1px solid var(--border)}
+thead th{background:var(--surface);font-size:.8125rem;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+tbody th[scope=row]{font-weight:600}
+tbody tr:last-child>*{border-bottom:0}
+ul.plain{margin:0;padding:0;list-style:none}
+ul.plain li+li{margin-top:.5rem}
+dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:.25rem 1rem;margin:.5rem 0}
+dl.facts dt{font-weight:600}
+dl.facts dd{margin:0}
+dl.inline{margin:.25rem 0}
+dl.inline div{display:block}
+dl.inline dt{display:inline;font-weight:600}
+dl.inline dt::after{content:": "}
+dl.inline dd{display:inline;margin:0}
+details.detail>summary{cursor:pointer;padding:.4rem .6rem;border:1px solid var(--border);border-radius:.4rem;background:var(--surface);font-weight:600}
+details.detail[open]>summary{margin-bottom:.5rem}
+.empty{padding:1rem;border:2px dashed var(--border);border-radius:.5rem;color:var(--muted)}
+.cols{min-width:12rem}
+footer{margin:2rem 0 1rem;padding-top:1rem;border-top:1px solid var(--border);color:var(--muted);font-size:.875rem}
+@media screen and (max-width:720px){
+.wrap{padding:.75rem}
+dl.facts{grid-template-columns:1fr}
+dl.facts dt{margin-top:.5rem}
+.scroll{border:0}
+table.stack,table.stack tbody,table.stack tr,table.stack th,table.stack td{display:block;width:100%}
+table.stack thead{position:absolute;left:-999px;width:1px;height:1px;overflow:hidden}
+table.stack caption{display:block}
+table.stack tr{margin:0 0 1rem;border:1px solid var(--border);border-radius:.4rem;overflow:hidden}
+table.stack tbody tr:last-child>*{border-bottom:1px solid var(--border)}
+table.stack tr>*:last-child{border-bottom:0}
+table.stack td::before,table.stack th[scope=row]::before{content:attr(data-label);display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+table.stack th[scope=row]{background:var(--surface)}
+#details table.stack tr{margin:0 0 .5rem}
+#details table.stack th,#details table.stack td{display:grid;grid-template-columns:5.5rem 1fr;gap:.5rem;align-items:baseline;padding:.25rem .6rem}
+#details table.stack td::before,#details table.stack th[scope=row]::before{font-size:.6875rem}
+#details h3{margin:1rem 0 .4rem}
+}
+@media print{
+:root{--page:#ffffff;--surface:#f6f8fa;--text:#1f2328;--muted:#4a5560;--border:#8c959f;--link:#0a4fa8;--pass-fg:#0b4a2a;--pass-bg:#d8f3e3;--pass-bd:#137a45;--fail-fg:#7a1620;--fail-bg:#fde2e4;--fail-bd:#b3261e;--stale-fg:#5c4400;--stale-bg:#fff1c2;--stale-bd:#8a6500;--missing-fg:#383e45;--missing-bg:#e6e8eb;--missing-bd:#5b6570;--partial-fg:#7a3300;--partial-bg:#ffe6d2;--partial-bd:#b04a00;--deferred-fg:#3b2a78;--deferred-bg:#e9e3fb;--deferred-bd:#5b45b0;--unknown-fg:#383e45;--unknown-bg:#e6e8eb;--unknown-bd:#5b6570;--notice-fg:#5c4400;--notice-bg:#fff1c2;--notice-bd:#8a6500;--page:#fff;--surface:#fff;--text:#000;--muted:#333;--border:#555;--link:#000}
+body{font-size:11pt}
+.wrap{max-width:none;padding:0}
+.skip{display:none}
+.scroll{overflow:visible;border:0}
+table{font-size:9pt}
+tr,.verdict,.notice{break-inside:avoid}
+thead{display:table-header-group}
+a{color:inherit;text-decoration:none}
+}</style>
+</head>
+<body>
+<a class="skip" href="#requirements">Skip to the requirements table</a>
+<div class="wrap">
+<header>
+<p class="eyebrow">ProofGate acceptance report</p>
+<h1>demo-release-gate</h1>
+<p class="muted">Evaluated at <code>2026-09-29T12:00:00.000Z</code> UTC. Assessment <code><assessment-uuid></code>.</p>
+<nav aria-label="Report sections"><a href="#verdict">Verdict</a> | <a href="#summary">Summary</a> | <a href="#identity">Assessment</a> | <a href="#requirements">Requirements</a> | <a href="#details">Details</a> | <a href="#receipts">Receipts</a> | <a href="#glossary">Statuses</a></nav>
+</header>
+<main>
+<section id="verdict" class="verdict tone-pass" aria-labelledby="verdict-h">
+<h2 id="verdict-h"><span aria-hidden="true">✓</span> ACCEPTED</h2>
+<p>Verdict <strong>accepted</strong>, exit code <strong>0</strong>: all 2 mandatory requirements are PASS for the revisions listed below.</p><p>1 advisory requirement(s) are not PASS. They do not block acceptance and stay listed below.</p>
+
+</section>
+<section aria-labelledby="exit-h">
+<h2 id="exit-h">Exit code meaning</h2>
+<div class="scroll"><table>
+<caption>Exit codes of <code>proofgate evaluate</code></caption>
+<thead><tr><th scope="col">Code</th><th scope="col">Meaning</th><th scope="col">This report</th></tr></thead>
+<tbody><tr><th scope="row">0</th><td>Accepted: every mandatory requirement is PASS.</td><td><strong>Yes</strong></td></tr><tr><th scope="row">1</th><td>Unsatisfied: at least one mandatory requirement is not PASS. A report is written; nothing is accepted.</td><td><span class="muted">No</span></td></tr><tr><th scope="row">2</th><td>Malformed input or an internal error. No report is produced, so a report can never carry this code.</td><td><span class="muted">No</span></td></tr></tbody>
+</table></div>
+</section>
+<section id="summary" aria-labelledby="summary-h">
+<h2 id="summary-h">Summary by status</h2>
+<div class="scroll"><table class="stack">
+<caption>Requirements by status <span class="muted">(3 total)</span></caption>
+<thead><tr><th scope="col">Status</th><th scope="col">What it means</th><th scope="col">Mandatory</th><th scope="col">Advisory</th><th scope="col">Total</th></tr></thead>
+<tbody><tr><th scope="row" data-label="Status"><span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></th><td data-label="What it means">Every required repository has fresh, complete, passing evidence for the exact revision, environment and test level. <em>Satisfies the requirement.</em></td><td data-label="Mandatory">2</td><td data-label="Advisory">0</td><td data-label="Total">2</td></tr><tr><th scope="row" data-label="Status"><span class="badge tone-fail"><span class="sym" aria-hidden="true">✗</span> FAIL</span></th><td data-label="What it means">Fresh evidence for the exact revision contains a failing test or contradicts itself. <em>Not satisfied. A failing mandatory requirement blocks acceptance.</em></td><td data-label="Mandatory">0</td><td data-label="Advisory">0</td><td data-label="Total">0</td></tr><tr><th scope="row" data-label="Status"><span class="badge tone-stale"><span class="sym" aria-hidden="true">◷</span> STALE</span></th><td data-label="What it means">The only matching evidence is at or beyond the maximum allowed age. Evidence exactly at the limit is already stale. <em>Not satisfied. Old evidence is not accepted.</em></td><td data-label="Mandatory">0</td><td data-label="Advisory">0</td><td data-label="Total">0</td></tr><tr><th scope="row" data-label="Status"><span class="badge tone-missing"><span class="sym" aria-hidden="true">○</span> MISSING</span></th><td data-label="What it means">No matching evidence exists, or the only evidence is passing claims of runs that executed zero tests. <em>Not satisfied. Absence of evidence is not a pass.</em></td><td data-label="Mandatory">0</td><td data-label="Advisory">0</td><td data-label="Total">0</td></tr><tr><th scope="row" data-label="Status"><span class="badge tone-partial"><span class="sym" aria-hidden="true">◐</span> PARTIAL</span></th><td data-label="What it means">The evidence is incomplete: skipped tests, a partial result, or only some of the declared repositories are covered. <em>Not satisfied. Incomplete evidence is not accepted.</em></td><td data-label="Mandatory">0</td><td data-label="Advisory">0</td><td data-label="Total">0</td></tr><tr><th scope="row" data-label="Status"><span class="badge tone-deferred"><span class="sym" aria-hidden="true">◇</span> DEFERRED</span></th><td data-label="What it means">The manifest explicitly defers this requirement. It is unverified and stays visible. <em>Not satisfied. Deferral never satisfies a mandatory requirement.</em></td><td data-label="Mandatory">0</td><td data-label="Advisory">1</td><td data-label="Total">1</td></tr></tbody>
+</table></div>
+</section>
+<section id="identity" aria-labelledby="identity-h">
+<h2 id="identity-h">Assessment</h2>
+<dl class="facts">
+<dt>Assessment id</dt><dd><code><assessment-uuid></code></dd>
+<dt>Manifest</dt><dd>demo-release-gate</dd>
+<dt>Evaluated at (UTC)</dt><dd><code>2026-09-29T12:00:00.000Z</code></dd>
+<dt>Clock</dt><dd>The system clock at the time of the run.</dd>
+<dt>Manifest hash</dt><dd><code>b7c0939f336981525a9f9b8bab5f85d4e410eada15ab6f88cfb11c2157106a21</code></dd>
+<dt>Policy hash</dt><dd><code>ac8ee21da976273566439dab11aa68d69375ed509595e41aae873a31e04bcf6f</code></dd>
+<dt>Revisions hash</dt><dd><code>43436e89f16239a7d82b69fd87a91255354336353af35154331fa5fdf8a3ed50</code></dd>
+<dt>Receipts hash</dt><dd><code>1d38e1565be883ec9ce7443007d17f119938cd72b43b38335e29ae0a95330c11</code></dd>
+<dt>Engine</dt><dd>proofgate 0.1.0 (policy engine v2, schema v1)</dd>
+<dt>Replaced an earlier report</dt><dd>No. This is the first assessment at this location.</dd>
+<dt>Inputs read</dt><dd>8 files scanned, 3 receipt documents, 4096 metadata bytes, 3 artifact bytes. Artifacts are hashed, never opened as links or fetched.</dd>
+</dl>
+</section>
+<section id="revisions" aria-labelledby="revisions-h">
+<h2 id="revisions-h">Revisions under assessment</h2>
+<div class="scroll"><table class="stack">
+<caption>Revision set: a receipt counts only for the exact full commit SHA listed here</caption>
+<thead><tr><th scope="col">Repository</th><th scope="col">Full commit SHA</th></tr></thead>
+<tbody><tr><th scope="row" data-label="Repository">api</th><td data-label="Full commit SHA"><code>d5bea4eb09e82d153fafd07cb2b88f77c93767c2</code></td></tr><tr><th scope="row" data-label="Repository">web</th><td data-label="Full commit SHA"><code>325a62cfc7b83bc9fa1cdefeaeeed928b0b32b6c</code></td></tr></tbody>
+</table></div>
+</section>
+<section id="requirements" aria-labelledby="requirements-h">
+<h2 id="requirements-h">Requirements</h2>
+<div class="scroll" role="region" aria-labelledby="requirements-cap" tabindex="0"><table class="stack">
+<caption id="requirements-cap">Every requirement, mandatory first <span class="muted">(3 total; manifest order inside each group)</span></caption>
+<thead><tr><th scope="col">Requirement</th><th scope="col">Status</th><th scope="col">Required</th><th scope="col">Source receipts</th><th scope="col">Environment</th><th scope="col">Reasons</th><th scope="col">Next step</th></tr></thead>
+<tbody><tr id="req-1">
+<th scope="row" data-label="Requirement"><code>REQ-PASS</code><br>Checkout API integration tests<br><span class="tag strong">MANDATORY</span></th>
+<td data-label="Status"><span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></td>
+<td data-label="Required" class="cols"><dl class="inline">
+<div><dt>Level</dt><dd>integration or higher</dd></div>
+<div><dt>Environment</dt><dd>staging (exact match)</dd></div>
+<div><dt>Max age</dt><dd>1 h; evidence at exactly this age is stale</dd></div>
+<div><dt>Repositories</dt><dd><code>api</code></dd></div>
+<div><dt>Execution kinds</dt><dd>live</dd></div>
+</dl></td>
+<td data-label="Source receipts"><code>rcpt-0101</code></td>
+<td data-label="Environment"><code>staging</code></td>
+<td data-label="Reasons" class="cols"><ul class="plain"><li><code>all_criteria_met</code><br>Repository, revision, environment, level, execution kind and freshness all match and every test passed.</li></ul></td>
+<td data-label="Next step" class="cols"><ul class="plain"><li>No action needed.</li></ul></td>
+</tr><tr id="req-2">
+<th scope="row" data-label="Requirement"><code>REQ-E2E</code><br>Cross-repository end-to-end flow<br><span class="tag strong">MANDATORY</span></th>
+<td data-label="Status"><span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></td>
+<td data-label="Required" class="cols"><dl class="inline">
+<div><dt>Level</dt><dd>e2e or higher</dd></div>
+<div><dt>Environment</dt><dd>staging (exact match)</dd></div>
+<div><dt>Max age</dt><dd>1 h; evidence at exactly this age is stale</dd></div>
+<div><dt>Repositories</dt><dd><code>api</code>, <code>web</code></dd></div>
+<div><dt>Execution kinds</dt><dd>live</dd></div>
+</dl></td>
+<td data-label="Source receipts"><code>rcpt-0102</code>, <code>rcpt-0103</code></td>
+<td data-label="Environment"><code>staging</code></td>
+<td data-label="Reasons" class="cols"><ul class="plain"><li><code>all_criteria_met</code><br>Repository, revision, environment, level, execution kind and freshness all match and every test passed.</li></ul></td>
+<td data-label="Next step" class="cols"><ul class="plain"><li>No action needed.</li></ul></td>
+</tr><tr id="req-3">
+<th scope="row" data-label="Requirement"><code>REQ-ADV-DEFERRED</code><br>Advisory load test<br><span class="tag">ADVISORY</span></th>
+<td data-label="Status"><span class="badge tone-deferred"><span class="sym" aria-hidden="true">◇</span> DEFERRED</span><p><strong>Deferred:</strong> Scheduled for the next release</p><p class="muted">Evidence alone would say <span class="badge tone-missing"><span class="sym" aria-hidden="true">○</span> MISSING</span>. Deferral is not a pass.</p></td>
+<td data-label="Required" class="cols"><dl class="inline">
+<div><dt>Level</dt><dd>integration or higher</dd></div>
+<div><dt>Environment</dt><dd>staging (exact match)</dd></div>
+<div><dt>Max age</dt><dd>1 h; evidence at exactly this age is stale</dd></div>
+<div><dt>Repositories</dt><dd><code>api</code></dd></div>
+<div><dt>Execution kinds</dt><dd>live</dd></div>
+</dl></td>
+<td data-label="Source receipts"><span class="muted">None: no receipt decided this status.</span></td>
+<td data-label="Environment"><span class="muted">None observed (required: staging)</span></td>
+<td data-label="Reasons" class="cols"><ul class="plain"><li><code>no_receipt</code><br>No receipt names this requirement for this repository.</li><li><code>requirement_deferred</code><br>The manifest explicitly defers this requirement; deferral never satisfies a mandatory gate.</li></ul></td>
+<td data-label="Next step" class="cols"><ul class="plain"><li>Resolve the deferral: run the tests, then remove the deferral from the manifest.</li><li>Run the required tests and add a receipt that names this requirement.</li><li>Resolve the deferral: run the tests, then remove the deferral from the manifest. Until then it cannot be accepted.</li></ul></td>
+</tr></tbody>
+</table></div>
+</section>
+<section id="details" aria-labelledby="details-h">
+<h2 id="details-h">Requirement details</h2>
+<p class="muted">Per-repository evidence and rejected receipts behind each decision. A requirement that passed cleanly is folded to one line (its status stays visible); everything else is open. Use the disclosure arrow to open or close any of them.</p>
+<section id="detail-1" aria-labelledby="detail-1-h">
+<h3 id="detail-1-h"><code>REQ-PASS</code> <span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></h3>
+<details class="detail">
+<summary>1 repository: <code>api</code> PASS</summary>
+<div class="scroll"><table class="stack">
+<caption>Evidence per repository for <code>REQ-PASS</code></caption>
+<thead><tr><th scope="col">Repository</th><th scope="col">Expected commit</th><th scope="col">Status</th><th scope="col">Reasons</th><th scope="col">Source receipts</th></tr></thead>
+<tbody><tr><th scope="row" data-label="Repository">api</th><td data-label="Expected commit"><code>d5bea4eb09e82d153fafd07cb2b88f77c93767c2</code></td><td data-label="Status"><span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></td><td data-label="Reasons"><ul class="plain"><li><code>all_criteria_met</code><br>Repository, revision, environment, level, execution kind and freshness all match and every test passed.</li></ul></td><td data-label="Source receipts"><code>rcpt-0101</code></td></tr></tbody>
+</table></div>
+<p class="muted">No receipt was rejected for this requirement.</p>
+</details>
+</section><section id="detail-2" aria-labelledby="detail-2-h">
+<h3 id="detail-2-h"><code>REQ-E2E</code> <span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></h3>
+<details class="detail">
+<summary>2 repositories: <code>api</code> PASS, <code>web</code> PASS</summary>
+<div class="scroll"><table class="stack">
+<caption>Evidence per repository for <code>REQ-E2E</code></caption>
+<thead><tr><th scope="col">Repository</th><th scope="col">Expected commit</th><th scope="col">Status</th><th scope="col">Reasons</th><th scope="col">Source receipts</th></tr></thead>
+<tbody><tr><th scope="row" data-label="Repository">api</th><td data-label="Expected commit"><code>d5bea4eb09e82d153fafd07cb2b88f77c93767c2</code></td><td data-label="Status"><span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></td><td data-label="Reasons"><ul class="plain"><li><code>all_criteria_met</code><br>Repository, revision, environment, level, execution kind and freshness all match and every test passed.</li></ul></td><td data-label="Source receipts"><code>rcpt-0102</code></td></tr><tr><th scope="row" data-label="Repository">web</th><td data-label="Expected commit"><code>325a62cfc7b83bc9fa1cdefeaeeed928b0b32b6c</code></td><td data-label="Status"><span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></td><td data-label="Reasons"><ul class="plain"><li><code>all_criteria_met</code><br>Repository, revision, environment, level, execution kind and freshness all match and every test passed.</li></ul></td><td data-label="Source receipts"><code>rcpt-0103</code></td></tr></tbody>
+</table></div>
+<p class="muted">No receipt was rejected for this requirement.</p>
+</details>
+</section><section id="detail-3" aria-labelledby="detail-3-h">
+<h3 id="detail-3-h"><code>REQ-ADV-DEFERRED</code> <span class="badge tone-deferred"><span class="sym" aria-hidden="true">◇</span> DEFERRED</span></h3>
+<details class="detail" open>
+<summary>1 repository: <code>api</code> MISSING</summary>
+<div class="scroll"><table class="stack">
+<caption>Evidence per repository for <code>REQ-ADV-DEFERRED</code></caption>
+<thead><tr><th scope="col">Repository</th><th scope="col">Expected commit</th><th scope="col">Status</th><th scope="col">Reasons</th><th scope="col">Source receipts</th></tr></thead>
+<tbody><tr><th scope="row" data-label="Repository">api</th><td data-label="Expected commit"><code>d5bea4eb09e82d153fafd07cb2b88f77c93767c2</code></td><td data-label="Status"><span class="badge tone-missing"><span class="sym" aria-hidden="true">○</span> MISSING</span></td><td data-label="Reasons"><ul class="plain"><li><code>no_receipt</code><br>No receipt names this requirement for this repository.</li></ul></td><td data-label="Source receipts"><span class="muted">None</span></td></tr></tbody>
+</table></div>
+<p class="muted">No receipt was rejected for this requirement.</p>
+</details>
+</section>
+</section>
+<section id="receipts" aria-labelledby="receipts-h">
+<h2 id="receipts-h">Receipts considered</h2>
+<div class="scroll" role="region" aria-labelledby="receipts-cap" tabindex="0"><table class="stack">
+<caption id="receipts-cap">Every receipt read <span class="muted">(3 total)</span></caption>
+<thead><tr><th scope="col">Receipt</th><th scope="col">Scope</th><th scope="col">Run</th><th scope="col">Result</th><th scope="col">Finished (UTC)</th><th scope="col">Artifact (not fetched)</th></tr></thead>
+<tbody><tr>
+<th scope="row" data-label="Receipt"><code>rcpt-0101</code><br><span class="muted">Source file</span> <code>rcpt-0101.receipt.json</code><br><span class="muted">Adapter</span> proofgate.receipt v1, native</th>
+<td data-label="Scope"><code>api</code> at <code>d5bea4eb09e82d153fafd07cb2b88f77c93767c2</code><br><span class="muted">Requirements</span> <code>REQ-PASS</code></td>
+<td data-label="Run">runner-synthetic-1<br>staging, integration tests<br>live<br><span class="muted">Command text (informational, never executed)</span> <code>npm test -- --run</code></td>
+<td data-label="Result">pass<br>12 passed, 0 failed, 0 skipped of 12</td>
+<td data-label="Finished (UTC)"><code>2026-09-29T11:50:00.000Z</code><br><span class="muted">10 min before the evaluation time</span></td>
+<td data-label="Artifact (not fetched)"><code>artifacts/rcpt-0101.xml</code><br><span class="muted">sha256</span> <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code><br><span class="muted">receipt content</span> <code>ce870401cb11a3d46263b4527003f40ce18f1084e1fd8632b21e7a2984a24f69</code></td>
+</tr><tr>
+<th scope="row" data-label="Receipt"><code>rcpt-0102</code><br><span class="muted">Source file</span> <code>rcpt-0102.receipt.json</code><br><span class="muted">Adapter</span> proofgate.receipt v1, native</th>
+<td data-label="Scope"><code>api</code> at <code>d5bea4eb09e82d153fafd07cb2b88f77c93767c2</code><br><span class="muted">Requirements</span> <code>REQ-E2E</code></td>
+<td data-label="Run">runner-synthetic-1<br>staging, e2e tests<br>live<br><span class="muted">Command text (informational, never executed)</span> <code>npm test -- --run</code></td>
+<td data-label="Result">pass<br>12 passed, 0 failed, 0 skipped of 12</td>
+<td data-label="Finished (UTC)"><code>2026-09-29T11:50:00.000Z</code><br><span class="muted">10 min before the evaluation time</span></td>
+<td data-label="Artifact (not fetched)"><code>artifacts/rcpt-0102.xml</code><br><span class="muted">sha256</span> <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code><br><span class="muted">receipt content</span> <code>760c9626563d72700f815323f6d4fa7d499d1d09f0b01f020b47596b8c702623</code></td>
+</tr><tr>
+<th scope="row" data-label="Receipt"><code>rcpt-0103</code><br><span class="muted">Source file</span> <code>rcpt-0103.receipt.json</code><br><span class="muted">Adapter</span> proofgate.receipt v1, native</th>
+<td data-label="Scope"><code>web</code> at <code>325a62cfc7b83bc9fa1cdefeaeeed928b0b32b6c</code><br><span class="muted">Requirements</span> <code>REQ-E2E</code></td>
+<td data-label="Run">runner-synthetic-1<br>staging, e2e tests<br>live<br><span class="muted">Command text (informational, never executed)</span> <code>npm test -- --run</code></td>
+<td data-label="Result">pass<br>12 passed, 0 failed, 0 skipped of 12</td>
+<td data-label="Finished (UTC)"><code>2026-09-29T11:50:00.000Z</code><br><span class="muted">10 min before the evaluation time</span></td>
+<td data-label="Artifact (not fetched)"><code>artifacts/rcpt-0103.xml</code><br><span class="muted">sha256</span> <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code><br><span class="muted">receipt content</span> <code>f1d6388039ee09b5501144ebdb20253c790ee9381bd30dea43b41c0c582dd6ce</code></td>
+</tr></tbody>
+</table></div>
+</section>
+<section id="glossary" aria-labelledby="glossary-h">
+<h2 id="glossary-h">How to read the statuses</h2>
+<p>Only PASS satisfies a requirement. Every other status, including DEFERRED, is visible and keeps a mandatory requirement from being accepted.</p>
+<dl class="facts"><dt><span class="badge tone-pass"><span class="sym" aria-hidden="true">✓</span> PASS</span></dt><dd>Every required repository has fresh, complete, passing evidence for the exact revision, environment and test level. <strong>Satisfies the requirement.</strong></dd><dt><span class="badge tone-fail"><span class="sym" aria-hidden="true">✗</span> FAIL</span></dt><dd>Fresh evidence for the exact revision contains a failing test or contradicts itself. <strong>Not satisfied. A failing mandatory requirement blocks acceptance.</strong></dd><dt><span class="badge tone-stale"><span class="sym" aria-hidden="true">◷</span> STALE</span></dt><dd>The only matching evidence is at or beyond the maximum allowed age. Evidence exactly at the limit is already stale. <strong>Not satisfied. Old evidence is not accepted.</strong></dd><dt><span class="badge tone-missing"><span class="sym" aria-hidden="true">○</span> MISSING</span></dt><dd>No matching evidence exists, or the only evidence is passing claims of runs that executed zero tests. <strong>Not satisfied. Absence of evidence is not a pass.</strong></dd><dt><span class="badge tone-partial"><span class="sym" aria-hidden="true">◐</span> PARTIAL</span></dt><dd>The evidence is incomplete: skipped tests, a partial result, or only some of the declared repositories are covered. <strong>Not satisfied. Incomplete evidence is not accepted.</strong></dd><dt><span class="badge tone-deferred"><span class="sym" aria-hidden="true">◇</span> DEFERRED</span></dt><dd>The manifest explicitly defers this requirement. It is unverified and stays visible. <strong>Not satisfied. Deferral never satisfies a mandatory requirement.</strong></dd></dl>
+</section>
+</main>
+<footer>
+<p>Generated statically from <code>report.json</code>: no script runs, nothing is fetched, no artifact link is followed. ProofGate verifies that receipts are consistent with the declared policy and revisions; it does not prove that the party that produced a receipt was honest.</p>
+</footer>
+</div>
+</body>
+</html>

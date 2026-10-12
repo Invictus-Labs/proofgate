@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "receipt_id": "rcpt-checkout-e2e-api-001",
+  "requirement_ids": [
+    "REQ-CHECKOUT-E2E"
+  ],
+  "repository": "api",
+  "commit_sha": "d1ec81eb5402a6330282a1353a55c23f75679e14",
+  "runner_id": "synthetic-runner-1",
+  "environment": "staging",
+  "test_level": "e2e",
+  "execution_kind": "live",
+  "result": "pass",
+  "tests": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "path": "artifacts/rcpt-checkout-e2e-api-001.xml",
+    "sha256": "7c5a47ff016681cfb19f1f87c61481d70fe1876ea39ab549372cc3fbdfe0623e"
+  },
+  "finished_at": "2026-09-29T10:00:00Z",
+  "command": "synthetic test command (recorded as text, never executed)"
+}

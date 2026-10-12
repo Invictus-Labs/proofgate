@@ -1,8 +1,8 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ProofGate PRD</title><style>/* ============================================================
- * Mission Control — Knox's report theme
+ * ProofGate report theme
  * ------------------------------------------------------------
  * Dark sci-fi command center · CRT/HUD aesthetic · Inter + JetBrains Mono
- * Domain colors per the Mission Control design system (MASTER.md)
+ * Domain colors per the report design tokens
  *
  * Sized for 3+ ft viewing distance from monitor:
  *   - Body: 19px (vs default 16px)
@@ -582,25 +582,24 @@ footer a:hover { color: var(--cyan); border-color: var(--cyan); }
 }
 
 /* ════════════════════════════════════════════════════════════════════════
-   Mission Control — v2 Diagram Frame (portable)
+   v2 Diagram Frame (portable)
    ────────────────────────────────────────────────────────────────────────
-   Ports the Operator's Academy "Diagram System v2" grammar
-   (academy/design-system/DIAGRAM-GRAMMAR.md) into a self-contained,
+   Ports a diagram grammar ("Diagram System v2") into a self-contained,
    React-free CSS block for the HTML report companions emitted by the
    innovation + prd-writer skills.
 
    USAGE: inline this file in a <style> block AFTER mission-control.css,
    then wrap every Mermaid graph in the .dg DiagramFrame markup documented
    in reports-theme/DIAGRAMS.md. Mermaid renders the topology; this CSS
-   supplies the academy chrome (grid bg, mono title, ⊕ zoom chip, the
+   supplies the diagram chrome (grid bg, mono title, ⊕ zoom chip, the
    InsightStrip takeaway bar).
 
-   DARK ONLY — Mission Control HTML companions are dark-mode only (Knox
-   default). The academy's bi-modal light tokens are intentionally omitted.
+   DARK ONLY — these HTML companions are dark-mode only. The bi-modal light tokens are
+   intentionally omitted.
    ════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* diagram surfaces (--dg-*) — academy dark terminal family */
+  /* diagram surfaces (--dg-*) — dark terminal family */
   --dg-bg: #0d1117;
   --dg-surface: #161b22;
   --dg-line: #1e2a3a;
@@ -623,7 +622,7 @@ footer a:hover { color: var(--cyan); border-color: var(--cyan); }
   --c-slate: #94a3b8;          /* ext   — external / out-of-boundary */
 }
 
-/* ── DiagramFrame: the outer container (= academy DiagramFrame primitive) ── */
+/* ── DiagramFrame: the outer container (= the DiagramFrame primitive) ── */
 .dg {
   position: relative;
   margin: 26px 0;
@@ -1001,7 +1000,7 @@ linkStyle 0,1 stroke:#00f0ff,stroke-width:2px;
 <h3>State and uncertainty contract</h3>
 <p>A requirement resolves to PASS, FAIL, STALE, MISSING, PARTIAL or DEFERRED. DEFERRED is visible and never satisfies a mandatory gate. PASS requires matching repository, full SHA, artifact hash, required environment, test level and age at evaluation time. New revision or policy hashes require a new assessment; historical reports are immutable.</p>
 <h3>Ecosystem adapter boundary</h3>
-<p>Optional RunProof receipt importer; Mission Control consumes a sanitized report reference and status. ScopeGuard may supply approved requirements. No connector writes back in MVP.</p>
+<p>Optional RunProof receipt importer; a downstream dashboard may consume a sanitized report reference and status. ScopeGuard may supply approved requirements. No connector writes back in MVP.</p>
 <p>Adapters use a versioned envelope <code>{schema_version:1,event_id,source,resource_id,event_type,occurred_at,revision,evidence_ref}</code> with optional correlation_id. Deduplicate event_id at consumers, reject unsupported major versions and preserve ordering/version metadata. Delivery is at least once; consumers do not infer current state from an old event. Connections are optional and disabled by default. Export bundles work without network connectivity.</p>
 <h3>Security and resource limits</h3>
 <p>Do not execute commands from imported receipts, arbitrary URLs or model text. Validate paths, symlinks, archive expansion limits and allowed content types; report text is HTML-escaped. Outbound endpoints are configured by administrators and checked against an allowlist including redirects and DNS resolution. No private addresses, secrets or real customer identifiers appear in public examples. Use <code>localhost</code> in user-facing demo instructions; document binding semantics explicitly. Logs redact credentials, personal fields and authorization headers. HandoffCheck's explicitly supplied execution scripts are the sole execution exception and run only within its isolated VM contract.</p>
@@ -1095,4 +1094,4 @@ linkStyle 0,1 stroke:#00f0ff,stroke-width:2px;
 </tbody>
 </table>
 <p>Checks in the HTML persist locally and are operator notes, not evidence that external work was completed.</p>
-</section><section class="card"><h2>Build handoff</h2><pre>/feature-team docs/prd/proofgate.md</pre></section><script>document.querySelectorAll('input[type=checkbox]').forEach((e,i)=>{const k=location.pathname+':operator:'+i;e.checked=localStorage.getItem(k)==='1';e.addEventListener('change',()=>localStorage.setItem(k,e.checked?'1':'0'))});document.querySelectorAll('.dg').forEach(f=>f.addEventListener('click',()=>{const s=f.querySelector('svg');if(!s)return;const o=document.createElement('div');o.style.cssText='position:fixed;inset:0;background:#080c12ee;z-index:9999;overflow:auto;padding:4vw;cursor:zoom-out';o.innerHTML=s.outerHTML;o.onclick=()=>o.remove();document.body.appendChild(o)}));</script><script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad:false,securityLevel:'strict'});</script></body></html>
+</section><section class="card"><h2>Build handoff</h2><pre>/feature-team docs/prd/proofgate.md</pre></section><script>document.querySelectorAll('input[type=checkbox]').forEach((e,i)=>{const k=location.pathname+':operator:'+i;e.checked=localStorage.getItem(k)==='1';e.addEventListener('change',()=>localStorage.setItem(k,e.checked?'1':'0'))});document.querySelectorAll('.dg').forEach(f=>f.addEventListener('click',()=>{const s=f.querySelector('svg');if(!s)return;const o=document.createElement('div');o.style.cssText='position:fixed;inset:0;background:#080c12ee;z-index:9999;overflow:auto;padding:4vw;cursor:zoom-out';o.innerHTML=s.outerHTML;o.onclick=()=>o.remove();document.body.appendChild(o)}));</script></body></html>

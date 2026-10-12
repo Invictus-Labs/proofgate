@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "receipt_id": "rcpt-data-migration-001",
+  "requirement_ids": [
+    "REQ-DATA-MIGRATION"
+  ],
+  "repository": "api",
+  "commit_sha": "d1ec81eb5402a6330282a1353a55c23f75679e14",
+  "runner_id": "synthetic-runner-1",
+  "environment": "staging",
+  "test_level": "integration",
+  "execution_kind": "live",
+  "result": "pass",
+  "tests": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "path": "artifacts/rcpt-data-migration-001.xml",
+    "sha256": "80db2b09ef1e8823a475c597e8259ef1127a5bcaafb3c550cb592bf7793c53e6"
+  },
+  "finished_at": "2026-09-29T07:00:00Z",
+  "command": "synthetic test command (recorded as text, never executed)"
+}

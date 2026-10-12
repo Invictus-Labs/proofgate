@@ -1,10 +1,15 @@
 # PRD: ProofGate
 
+> **Frozen copy.** This is the product requirements document as it was written before the implementation, kept for the acceptance criteria in
+> section 5. Its sections 5c (definition of done), 7 (agent team plan) and the build-handoff section describe the maker's own planning
+> workflow (a shared quality-gate standard, a swarm runner, a build command); they are not part of the software and do not describe this
+> repository's process, whose gate is `scripts/verify-quality.sh` (see `docs/RELEASE.md`).
+
 **Prove what passed, on which revision, before accepting delivery.**
 
 Author: Codex via prd-writer · 2026-09-29
 
-Status: Draft; proposed topology; open-source direction; implementation not started. Board: #3793 (authoring only).
+Status: Draft; proposed topology; open-source direction; MVP implemented on the integration branch (acceptance status per criterion is in docs/qa/ac-matrix.md; this copy's requirement text is unchanged).
 
 ## 1. Problem Statement
 
@@ -209,7 +214,7 @@ A requirement resolves to PASS, FAIL, STALE, MISSING, PARTIAL or DEFERRED. DEFER
 
 ### Ecosystem adapter boundary
 
-Optional RunProof receipt importer; Mission Control consumes a sanitized report reference and status. ScopeGuard may supply approved requirements. No connector writes back in MVP.
+Optional RunProof receipt importer; a downstream dashboard may consume a sanitized report reference and status. ScopeGuard may supply approved requirements. No connector writes back in MVP.
 
 Adapters use a versioned envelope `{schema_version:1,event_id,source,resource_id,event_type,occurred_at,revision,evidence_ref}` with optional correlation_id. Deduplicate event_id at consumers, reject unsupported major versions and preserve ordering/version metadata. Delivery is at least once; consumers do not infer current state from an old event. Connections are optional and disabled by default. Export bundles work without network connectivity.
 
@@ -233,7 +238,7 @@ Before an upgrade, stop side-effect workers, back up metadata and encrypted evid
 | QA / packaging | tests/proofgate.spec.ts; tests/e2e/smoke.spec.ts; fixtures/demo.json; scripts/verify-quality.sh; README.md; Dockerfile | Evidence matrix, negative controls, packaging and operator runbook |
 
 
-Future dispatch only. No implementation agents are started by PRD authoring. Backend freezes schemas first; UI consumes them and proposes changes through the backend owner. QA reports implementation defects to the owning agent instead of editing overlapping files. Coordinator resolves shared configuration and reviews final integration.
+Schemas are fixed first; the UI consumes them and proposes changes through the owner of the schemas. Quality reports go to the owner of the code instead of editing overlapping files. Shared configuration and the final integration are reviewed by the project owner.
 
 Milestones: (1) validate pain and unresolved provider capability; (2) schemas and deterministic core with failure states; (3) synthetic end-to-end demonstration; (4) selected connector sandbox and fault injection where applicable; (5) independent review/QA on exact revisions; (6) operator-approved public release. Stop at a provider capability blocker rather than weakening safety criteria.
 
